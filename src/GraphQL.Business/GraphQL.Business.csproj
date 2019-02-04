@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -8,6 +8,15 @@
       <PackageReference Include="System.Reactive" Version="4.1.2" />
       <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
       <PackageReference Include="System.Reactive.Linq" Version="4.1.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\stylecop.json">
+        <Link>stylecop.json</Link>
+      </Content>
+      <Content Include="..\stylecop.ruleset">
+        <Link>stylecop.ruleset</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

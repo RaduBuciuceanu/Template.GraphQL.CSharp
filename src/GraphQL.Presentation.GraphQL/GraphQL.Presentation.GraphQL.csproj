@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -11,6 +11,15 @@
     <ItemGroup>
       <ProjectReference Include="..\GraphQL.Business.Commands\GraphQL.Business.Commands.csproj" />
       <ProjectReference Include="..\GraphQL.Business.Models\GraphQL.Business.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\stylecop.json">
+        <Link>stylecop.json</Link>
+      </Content>
+      <Content Include="..\stylecop.ruleset">
+        <Link>stylecop.ruleset</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
