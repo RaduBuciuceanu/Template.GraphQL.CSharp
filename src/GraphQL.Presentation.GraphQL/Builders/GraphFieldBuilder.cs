@@ -9,7 +9,7 @@ namespace GraphQL.Presentation.GraphQL.Builders
     {
         private readonly EventStreamFieldType _instance;
 
-        private IChildNode _node;
+        private INode _node;
 
         public GraphFieldBuilder()
         {
@@ -23,12 +23,13 @@ namespace GraphQL.Presentation.GraphQL.Builders
                 .WithType(_node.Type)
                 .WithDefaultArguments()
                 .WithHasArgument(_node as IArgumentNode)
-                .WithResolver(new FuncFieldResolver<object>(_node.Resolve));
+                .WithResolver(new FuncFieldResolver<object>(_node.Resolve))
+                .WithSubscriber(_node as ISubscription);
 
             return _instance;
         }
 
-        public GraphFieldBuilder WithNode(IChildNode node)
+        public GraphFieldBuilder WithNode(INode node)
         {
             _node = node;
             return this;
@@ -71,6 +72,16 @@ namespace GraphQL.Presentation.GraphQL.Builders
         private GraphFieldBuilder WithResolver(IFieldResolver resolver)
         {
             _instance.Resolver = resolver;
+            return this;
+        }
+
+        private GraphFieldBuilder WithSubscriber(ISubscription node)
+        {
+            if (node != null)
+            {
+                _instance.Subscriber = new EventStreamResolver<object>(node.Subscribe);
+            }
+
             return this;
         }
 

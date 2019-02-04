@@ -7,8 +7,11 @@ namespace GraphQL.Presentation.GraphQL.Types
     {
         public Message()
         {
-            Name = "";
-            Description = "";
+            Name = "message";
+            Description = string.Empty;
+
+            Field(instance => instance.Author).Description(string.Empty);
+            Field(instance => instance.Content).Description(string.Empty);
         }
     }
 }

@@ -9,10 +9,6 @@ namespace GraphQL.Presentation.GraphQL
     {
         public GraphSchema(MutationNode mutation, QueryNode query, SubscriptionNode subscription)
         {
-//            mutation.InitializeChildren();
-//            query.InitializeChildren();
-//            subscription.InitializeChildren();
-
             Mutation = mutation;
             Query = query;
             Subscription = subscription;

@@ -2,6 +2,7 @@ using System;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;
+using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Presentation.GraphQL.Queries
 {
@@ -11,11 +12,11 @@ namespace GraphQL.Presentation.GraphQL.Queries
 
         public string Name => "message";
 
-        public string Description => "description";
+        public string Description => "Returns all the existent messages.";
 
         public object Resolve(ResolveFieldContext context)
         {
-            throw new NotImplementedException();
+            return new MessageModel { Author = "asd" };
         }
     }
 }

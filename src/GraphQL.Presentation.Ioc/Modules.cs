@@ -12,7 +12,9 @@ namespace GraphQL.Presentation.Ioc
             _modules = new IModule[]
             {
                 new GraphModule(),
-                new StorageModule()
+                new StorageModule(),
+                new CommandsModule(),
+                new RepositoriesModule(),
             };
         }
 

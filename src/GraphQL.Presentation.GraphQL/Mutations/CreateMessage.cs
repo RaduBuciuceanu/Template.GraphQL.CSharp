@@ -15,13 +15,13 @@ namespace GraphQL.Presentation.GraphQL.Mutations
 
         public Type Type => typeof(Message);
 
-        public string Name => "message";
+        public string Name => "createMessage";
 
         public string Description => "Creates a message and returns the created one.";
 
         public string ArgumentName => "input";
 
-        public string ArgumentDescription => "The description of the argument.";
+        public string ArgumentDescription => "The message to be created.";
 
         public Type ArgumentType => typeof(MessageInput);
 

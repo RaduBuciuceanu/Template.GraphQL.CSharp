@@ -1,6 +1,6 @@
 namespace GraphQL.Presentation.GraphQL.Contract
 {
-    public interface IQuery : IChildNode
+    public interface IQuery : INode
     {
     }
 }

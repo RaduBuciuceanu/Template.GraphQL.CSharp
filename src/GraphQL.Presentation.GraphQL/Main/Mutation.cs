@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using GraphQL.Presentation.GraphQL.Builders;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Types;
