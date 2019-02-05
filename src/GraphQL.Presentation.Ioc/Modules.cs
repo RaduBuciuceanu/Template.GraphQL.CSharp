@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Ioc
@@ -27,3 +27,4 @@ namespace GraphQL.Presentation.Ioc
         }
     }
 }
+

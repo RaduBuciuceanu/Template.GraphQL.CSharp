@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using GraphQL.Presentation.GraphQL;
 using GraphQL.Presentation.GraphQL.Contract;
@@ -54,3 +54,4 @@ namespace GraphQL.Presentation.Ioc
         }
     }
 }
+

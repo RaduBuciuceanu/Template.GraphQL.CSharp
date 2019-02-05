@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Resolvers;
 using GraphQL.Types;
@@ -95,3 +95,4 @@ namespace GraphQL.Presentation.GraphQL.Builders
         }
     }
 }
+

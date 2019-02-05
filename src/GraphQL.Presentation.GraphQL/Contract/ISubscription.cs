@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GraphQL.Subscription;
 
 namespace GraphQL.Presentation.GraphQL.Contract
@@ -8,3 +8,4 @@ namespace GraphQL.Presentation.GraphQL.Contract
         IObservable<object> Subscribe(ResolveEventStreamContext context);
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GraphQL.Types;
 
 namespace GraphQL.Presentation.GraphQL.Contract
@@ -14,3 +14,4 @@ namespace GraphQL.Presentation.GraphQL.Contract
         object Resolve(ResolveFieldContext context);
     }
 }
+

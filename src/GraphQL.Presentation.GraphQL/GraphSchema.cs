@@ -1,4 +1,4 @@
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
 using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
 using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
@@ -15,3 +15,4 @@ namespace GraphQL.Presentation.GraphQL
         }
     }
 }
+

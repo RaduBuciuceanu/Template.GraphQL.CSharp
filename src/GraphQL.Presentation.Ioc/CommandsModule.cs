@@ -1,4 +1,4 @@
-using GraphQL.Business.Commands;
+﻿using GraphQL.Business.Commands;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Ioc
@@ -12,3 +12,4 @@ namespace GraphQL.Presentation.Ioc
         }
     }
 }
+

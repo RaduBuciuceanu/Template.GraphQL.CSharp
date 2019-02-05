@@ -29,3 +29,4 @@ namespace GraphQL.Data.Repositories
         }
     }
 }
+

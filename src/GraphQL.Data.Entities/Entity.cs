@@ -1,4 +1,4 @@
-namespace GraphQL.Data.Entities
+﻿namespace GraphQL.Data.Entities
 {
     public abstract class Entity
     {

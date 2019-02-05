@@ -1,4 +1,4 @@
-using GraphQL.Business.Repositories;
+﻿using GraphQL.Business.Repositories;
 using GraphQL.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,4 +1,4 @@
-using GraphQL.Data;
+﻿using GraphQL.Data;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Ioc

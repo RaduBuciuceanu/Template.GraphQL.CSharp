@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,12 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\stylecop.json">
-        <Link>stylecop.json</Link>
-      </Content>
-      <Content Include="..\stylecop.ruleset">
-        <Link>stylecop.ruleset</Link>
-      </Content>
+        <AdditionalFiles Include="../stylecop.json" />
+        <AdditionalFiles Include="../stylecop.ruleset" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GraphQL.Sources.CodeStyle\GraphQL.Sources.CodeStyle.csproj" />
     </ItemGroup>
 
 </Project>
+

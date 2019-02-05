@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,13 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
         <AdditionalFiles Include="../stylecop.json" />
         <AdditionalFiles Include="../stylecop.ruleset" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\GraphQL.Business\GraphQL.Business.csproj" />
-    </ItemGroup>
-
 </Project>
-

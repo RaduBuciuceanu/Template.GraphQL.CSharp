@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Reactive.Threading.Tasks;
 using GraphQL.Business.Commands;
 using GraphQL.Presentation.GraphQL.Contract;
@@ -37,3 +37,4 @@ namespace GraphQL.Presentation.GraphQL.Mutations
         }
     }
 }
+

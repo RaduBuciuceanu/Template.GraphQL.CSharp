@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using GraphQL.Presentation.Dtos;
 using GraphQL.Types;
@@ -45,3 +45,4 @@ namespace GraphQL.Presentation.Controllers
         }
     }
 }
+

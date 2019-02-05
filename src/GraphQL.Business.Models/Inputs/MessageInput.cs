@@ -1,4 +1,4 @@
-namespace GraphQL.Business.Models.Inputs
+﻿namespace GraphQL.Business.Models.Inputs
 {
     public class MessageInput
     {

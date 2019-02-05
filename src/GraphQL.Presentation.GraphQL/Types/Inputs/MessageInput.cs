@@ -1,4 +1,4 @@
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 
 namespace GraphQL.Presentation.GraphQL.Types.Inputs
@@ -15,3 +15,4 @@ namespace GraphQL.Presentation.GraphQL.Types.Inputs
         }
     }
 }
+
