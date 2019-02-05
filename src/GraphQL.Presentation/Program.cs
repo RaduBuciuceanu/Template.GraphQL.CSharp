@@ -12,10 +12,12 @@ namespace GraphQL.Presentation
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
+            string assemblyName = typeof(Program).Assembly.FullName;
+
             return WebHost
                 .CreateDefaultBuilder(args)
                 .UseKestrel()
-                .UseStartup<Startup>();
+                .UseStartup(assemblyName);
         }
     }
 }

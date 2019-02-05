@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.ruleset"></AdditionalFiles>
-        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.json"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.json"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GraphQL.Tests.CodeStyle\GraphQL.Tests.CodeStyle.csproj" />
+        <ProjectReference Include="..\GraphQL.Tests.CodeStyle\GraphQL.Tests.CodeStyle.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using GraphQL.Presentation.GraphQL;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Presentation.GraphQL.Mutations;
@@ -13,20 +14,20 @@ using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
 using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
 using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
-namespace GraphQL.Presentation.Ioc
+namespace GraphQL.Presentation.Ioc.Modules
 {
-    public class GraphModule : IModule
+    internal class ConfigureGraph : IConfigureServices
     {
-        public void Configure(IServiceCollection collection)
+        public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
-            collection.AddScoped(BuildMutations);
-            collection.AddScoped(BuildQueries);
-            collection.AddScoped(BuildSubscriptions);
-
-            collection.AddScoped<MutationNode>();
-            collection.AddScoped<SubscriptionNode>();
-            collection.AddScoped<QueryNode>();
-            collection.AddScoped<Schema, GraphSchema>();
+            return Observable.Return(input)
+                .Do(services => services.AddScoped(BuildMutations))
+                .Do(services => services.AddScoped(BuildQueries))
+                .Do(services => services.AddScoped(BuildSubscriptions))
+                .Do(services => services.AddScoped<MutationNode>())
+                .Do(services => services.AddScoped<QueryNode>())
+                .Do(services => services.AddScoped<SubscriptionNode>())
+                .Do(services => services.AddScoped<Schema, GraphSchema>());
         }
 
         private static IEnumerable<IQuery> BuildQueries(IServiceProvider provider)

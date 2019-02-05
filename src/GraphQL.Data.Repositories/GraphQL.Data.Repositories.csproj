@@ -6,14 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GraphQL.Business.Commands\GraphQL.Business.Commands.csproj" />
-      <ProjectReference Include="..\GraphQL.Business.Repositories\GraphQL.Business.Repositories.csproj" />
-      <ProjectReference Include="..\GraphQL.Data\GraphQL.Data.csproj" />
+        <ProjectReference Include="..\GraphQL.Business.Commands\GraphQL.Business.Commands.csproj"/>
+        <ProjectReference Include="..\GraphQL.Business.Repositories\GraphQL.Business.Repositories.csproj"/>
+        <ProjectReference Include="..\GraphQL.Data\GraphQL.Data.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"></AdditionalFiles>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"/>
     </ItemGroup>
 
 </Project>

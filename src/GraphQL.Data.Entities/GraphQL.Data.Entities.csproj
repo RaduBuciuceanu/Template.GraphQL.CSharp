@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"></AdditionalFiles>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"/>
     </ItemGroup>
 
 </Project>

@@ -6,18 +6,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Reactive" Version="4.1.2" />
-      <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
-      <PackageReference Include="System.Reactive.Linq" Version="4.1.2" />
+        <PackageReference Include="System.Reactive" Version="4.1.2"/>
+        <PackageReference Include="System.Reactive.Core" Version="4.1.2"/>
+        <PackageReference Include="System.Reactive.Linq" Version="4.1.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GraphQL.Sources.CodeStyle\GraphQL.Sources.CodeStyle.csproj" />
+        <ProjectReference Include="..\GraphQL.Sources.CodeStyle\GraphQL.Sources.CodeStyle.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"></AdditionalFiles>
-        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"/>
     </ItemGroup>
 
 </Project>
