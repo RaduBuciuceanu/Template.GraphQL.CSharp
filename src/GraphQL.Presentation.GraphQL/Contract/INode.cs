@@ -14,4 +14,3 @@ namespace GraphQL.Presentation.GraphQL.Contract
         object Resolve(ResolveFieldContext context);
     }
 }
-

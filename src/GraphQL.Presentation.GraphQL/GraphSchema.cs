@@ -15,4 +15,3 @@ namespace GraphQL.Presentation.GraphQL
         }
     }
 }
-

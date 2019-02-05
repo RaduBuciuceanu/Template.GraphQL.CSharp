@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../GraphQL.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +20,11 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"></AdditionalFiles>
     </ItemGroup>
 
 </Project>

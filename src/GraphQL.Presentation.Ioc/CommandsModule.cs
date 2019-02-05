@@ -12,4 +12,3 @@ namespace GraphQL.Presentation.Ioc
         }
     }
 }
-

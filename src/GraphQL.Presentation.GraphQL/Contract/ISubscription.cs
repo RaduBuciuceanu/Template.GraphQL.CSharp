@@ -8,4 +8,3 @@ namespace GraphQL.Presentation.GraphQL.Contract
         IObservable<object> Subscribe(ResolveEventStreamContext context);
     }
 }
-

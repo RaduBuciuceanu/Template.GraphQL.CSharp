@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../GraphQL.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,6 +14,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GraphQL.Presentation.Ioc\GraphQL.Presentation.Ioc.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"></AdditionalFiles>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"></AdditionalFiles>
     </ItemGroup>
 
 </Project>

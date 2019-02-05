@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using GraphQL.Presentation.GraphQL;
 using GraphQL.Presentation.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Mutations;
 using GraphQL.Presentation.GraphQL.Queries;
 using GraphQL.Presentation.GraphQL.Subscriptions;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
-using CreateMessage = GraphQL.Presentation.GraphQL.Mutations.CreateMessage;
-using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
-using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
-using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
-using IMessageCreatedCommand = GraphQL.Business.Commands.IMessageCreated;
 using ICreateMessageCommand = GraphQL.Business.Commands.ICreateMessage;
+using IMessageCreatedCommand = GraphQL.Business.Commands.IMessageCreated;
+using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
+using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
+using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
 namespace GraphQL.Presentation.Ioc
 {
@@ -41,7 +41,7 @@ namespace GraphQL.Presentation.Ioc
         {
             return new IMutation[]
             {
-                new CreateMessage(provider.GetService<ICreateMessageCommand>()),
+                new CreateMessage(provider.GetService<ICreateMessageCommand>())
             };
         }
 
@@ -49,9 +49,8 @@ namespace GraphQL.Presentation.Ioc
         {
             return new ISubscription[]
             {
-                new MessageCreated(provider.GetService<IMessageCreatedCommand>()),
+                new MessageCreated(provider.GetService<IMessageCreatedCommand>())
             };
         }
     }
 }
-

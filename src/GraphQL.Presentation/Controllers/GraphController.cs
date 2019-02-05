@@ -45,4 +45,3 @@ namespace GraphQL.Presentation.Controllers
         }
     }
 }
-

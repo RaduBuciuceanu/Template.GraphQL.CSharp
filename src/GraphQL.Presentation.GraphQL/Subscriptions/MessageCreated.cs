@@ -34,4 +34,3 @@ namespace GraphQL.Presentation.GraphQL.Subscriptions
         }
     }
 }
-

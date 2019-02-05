@@ -20,4 +20,3 @@ namespace GraphQL.Presentation.GraphQL.Queries
         }
     }
 }
-

@@ -95,4 +95,3 @@ namespace GraphQL.Presentation.GraphQL.Builders
         }
     }
 }
-

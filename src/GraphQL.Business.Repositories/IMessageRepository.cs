@@ -8,7 +8,7 @@ namespace GraphQL.Business.Repositories
     public interface IMessageRepository
     {
         IObservable<Message> Insert(MessageInput message);
+
         IObservable<IEnumerable<Message>> GetMany();
     }
 }
-

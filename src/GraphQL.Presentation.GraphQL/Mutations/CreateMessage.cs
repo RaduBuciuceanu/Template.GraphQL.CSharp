@@ -4,8 +4,8 @@ using GraphQL.Business.Commands;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;
-using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 using MessageInput = GraphQL.Presentation.GraphQL.Types.Inputs.MessageInput;
+using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 
 namespace GraphQL.Presentation.GraphQL.Mutations
 {
@@ -37,4 +37,3 @@ namespace GraphQL.Presentation.GraphQL.Mutations
         }
     }
 }
-
