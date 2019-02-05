@@ -6,11 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../stylecop.json" />
-        <AdditionalFiles Include="../stylecop.ruleset" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\GraphQL.Business\GraphQL.Business.csproj" />
     </ItemGroup>
 

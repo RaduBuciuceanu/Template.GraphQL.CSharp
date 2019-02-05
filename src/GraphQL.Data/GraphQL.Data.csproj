@@ -9,14 +9,5 @@
       <ProjectReference Include="..\GraphQL.Data.Entities\GraphQL.Data.Entities.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\stylecop.json">
-        <Link>stylecop.json</Link>
-      </Content>
-      <Content Include="..\stylecop.ruleset">
-        <Link>stylecop.ruleset</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>
 
