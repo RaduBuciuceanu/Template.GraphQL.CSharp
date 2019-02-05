@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GraphQL.Presentation
+namespace GraphQL.Presentation.Main
 {
     public static class Program
     {

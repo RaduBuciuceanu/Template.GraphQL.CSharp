@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace GraphQL.Presentation.Dtos
+namespace GraphQL.Presentation.Main.Dtos
 {
     public class GraphQuery
     {

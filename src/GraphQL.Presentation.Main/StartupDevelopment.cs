@@ -1,22 +1,20 @@
 ﻿using System.Reactive.Linq;
-using GraphiQl;
 using GraphQL.Presentation.Configurations;
 using GraphQL.Presentation.Ioc;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation
+namespace GraphQL.Presentation.Main
 {
-    public class StartupStaging
+    public class StartupDevelopment
     {
         public static void ConfigureServices(IServiceCollection collection)
         {
-            var modules = new ConfigureServicesStaging();
+            var modules = new ConfigureServicesDevelopment();
             modules.Execute(collection).Wait();
         }
 
-        public static void Configure(IApplicationBuilder builder, IConfigureStaging configure)
+        public static void Configure(IApplicationBuilder builder, IConfigureDevelopment configure)
         {
             configure.Execute(builder).Wait();
         }
