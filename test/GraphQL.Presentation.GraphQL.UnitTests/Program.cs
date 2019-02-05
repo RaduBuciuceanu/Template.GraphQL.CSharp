@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GraphQL.Business.UnitTests
+namespace GraphQL.Presentation.GraphQL.UnitTests
 {
     public class Program
     {
