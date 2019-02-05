@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>../GraphQL.Tests.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.ruleset"></AdditionalFiles>
-        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.json"></AdditionalFiles>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0"/>
+        <PackageReference Include="xunit" Version="2.3.1"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GraphQL.Tests.CodeStyle\GraphQL.Tests.CodeStyle.csproj" />
+        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Tests.CodeStyle/stylecop.json"/>
     </ItemGroup>
-
+    
 </Project>
