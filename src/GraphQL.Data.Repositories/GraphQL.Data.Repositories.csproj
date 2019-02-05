@@ -1,13 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../GraphQL.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GraphQL.Business.Commands\GraphQL.Business.Commands.csproj" />
-      <ProjectReference Include="..\GraphQL.Business.Repositories\GraphQL.Business.Repositories.csproj" />
-      <ProjectReference Include="..\GraphQL.Data\GraphQL.Data.csproj" />
+        <ProjectReference Include="..\GraphQL.Business.Commands\GraphQL.Business.Commands.csproj"/>
+        <ProjectReference Include="..\GraphQL.Business.Repositories\GraphQL.Business.Repositories.csproj"/>
+        <ProjectReference Include="..\GraphQL.Data\GraphQL.Data.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"/>
     </ItemGroup>
 
 </Project>
+

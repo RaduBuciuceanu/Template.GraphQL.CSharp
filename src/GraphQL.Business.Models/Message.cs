@@ -1,4 +1,4 @@
-namespace GraphQL.Business.Models
+﻿namespace GraphQL.Business.Models
 {
     public class Message
     {

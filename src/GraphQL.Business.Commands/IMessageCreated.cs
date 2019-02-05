@@ -1,4 +1,4 @@
-using System.Reactive;
+﻿using System.Reactive;
 using GraphQL.Business.Models;
 
 namespace GraphQL.Business.Commands

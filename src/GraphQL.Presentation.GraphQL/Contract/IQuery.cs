@@ -1,4 +1,4 @@
-namespace GraphQL.Presentation.GraphQL.Contract
+﻿namespace GraphQL.Presentation.GraphQL.Contract
 {
     public interface IQuery : INode
     {

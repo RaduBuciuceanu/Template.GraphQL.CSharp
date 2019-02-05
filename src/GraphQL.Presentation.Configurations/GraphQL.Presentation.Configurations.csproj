@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../GraphQL.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1"/>
+        <PackageReference Include="GraphiQL" Version="1.2.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\GraphQL.Business\GraphQL.Business.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.ruleset"/>
+        <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json"/>
+    </ItemGroup>
+</Project>

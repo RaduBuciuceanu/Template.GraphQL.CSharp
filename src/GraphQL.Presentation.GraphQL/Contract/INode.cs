@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GraphQL.Types;
 
 namespace GraphQL.Presentation.GraphQL.Contract

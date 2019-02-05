@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Reactive.Threading.Tasks;
 using GraphQL.Business.Commands;
 using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;
-using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 using MessageInput = GraphQL.Presentation.GraphQL.Types.Inputs.MessageInput;
+using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 
 namespace GraphQL.Presentation.GraphQL.Mutations
 {

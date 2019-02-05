@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
 using GraphQL.Business.Repositories;

@@ -1,4 +1,4 @@
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Presentation.GraphQL.Types
