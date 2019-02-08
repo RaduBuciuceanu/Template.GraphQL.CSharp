@@ -3,7 +3,7 @@ using GraphQL.Subscription;
 
 namespace GraphQL.Presentation.GraphQL.Contract
 {
-    public interface ISubscription : INode
+    public interface ISubscription : IHasBasics
     {
         IObservable<object> Subscribe(ResolveEventStreamContext context);
     }

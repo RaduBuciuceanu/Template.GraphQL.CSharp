@@ -16,7 +16,7 @@ using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
 using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
 using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
-namespace GraphQL.Presentation.Ioc.Modules
+namespace GraphQL.Presentation.Ioc
 {
     internal class ConfigureGraph : IConfigureServices
     {

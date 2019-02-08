@@ -5,11 +5,11 @@ using GraphQL.Types;
 
 namespace GraphQL.Presentation.GraphQL.Builders
 {
-    internal class GraphFieldBuilder
+    public class GraphFieldBuilder : IGraphFieldBuilder
     {
         private readonly EventStreamFieldType _instance;
 
-        private INode _node;
+        private IHasBasics _node;
 
         public GraphFieldBuilder()
         {
@@ -22,14 +22,14 @@ namespace GraphQL.Presentation.GraphQL.Builders
                 .WithDescription(_node.Description)
                 .WithType(_node.Type)
                 .WithDefaultArguments()
-                .WithHasArgument(_node as IArgumentNode)
+                .WithHasArgument(_node as IHasArgument)
                 .WithResolver(new FuncFieldResolver<object>(_node.Resolve))
                 .WithSubscriber(_node as ISubscription);
 
             return _instance;
         }
 
-        public GraphFieldBuilder WithNode(INode node)
+        public IGraphFieldBuilder WithNode(IHasBasics node)
         {
             _node = node;
             return this;
@@ -59,7 +59,7 @@ namespace GraphQL.Presentation.GraphQL.Builders
             return this;
         }
 
-        private GraphFieldBuilder WithHasArgument(IArgumentNode argumentNode)
+        private GraphFieldBuilder WithHasArgument(IHasArgument argumentNode)
         {
             if (argumentNode != null)
             {
@@ -85,7 +85,7 @@ namespace GraphQL.Presentation.GraphQL.Builders
             return this;
         }
 
-        private static QueryArgument BuildQueryArgument(IArgumentNode argumentNode)
+        private static QueryArgument BuildQueryArgument(IHasArgument argumentNode)
         {
             return new QueryArgument(argumentNode.ArgumentType)
             {

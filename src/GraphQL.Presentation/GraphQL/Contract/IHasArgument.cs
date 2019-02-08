@@ -2,7 +2,7 @@
 
 namespace GraphQL.Presentation.GraphQL.Contract
 {
-    public interface IArgumentNode
+    public interface IHasArgument
     {
         string ArgumentName { get; }
 

@@ -1,8 +1,7 @@
 ﻿using System.Reactive.Linq;
+using GraphQL.Presentation.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureServicesProduction = GraphQL.Presentation.Ioc.ConfigureServicesProduction;
-using IConfigureProduction = GraphQL.Presentation.Configurations.IConfigureProduction;
 
 namespace GraphQL.Presentation
 {
@@ -10,13 +9,16 @@ namespace GraphQL.Presentation
     {
         public static void ConfigureServices(IServiceCollection collection)
         {
-            var modules = new ConfigureServicesProduction();
-            modules.Execute(collection).Wait();
+            new ConfigureSettings().Execute(collection).Wait();
+            new ConfigureMemoryStorages().Execute(collection).Wait();
+            new ConfigureRepositories().Execute(collection).Wait();
+            new ConfigureBusinessCommands().Execute(collection).Wait();
+            new ConfigureGraph().Execute(collection).Wait();
         }
 
-        public static void Configure(IApplicationBuilder builder, IConfigureProduction configure)
+        public static void Configure(IApplicationBuilder builder)
         {
-            configure.Execute(builder).Wait();
+            builder.UseMvc();
         }
     }
 }

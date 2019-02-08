@@ -3,7 +3,7 @@ using GraphQL.Types;
 
 namespace GraphQL.Presentation.GraphQL.Contract
 {
-    public interface INode
+    public interface IHasBasics
     {
         string Name { get; }
 

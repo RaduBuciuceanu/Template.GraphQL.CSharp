@@ -1,8 +1,8 @@
 ﻿using System.Reactive.Linq;
+using GraphiQl;
+using GraphQL.Presentation.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureServicesMock = GraphQL.Presentation.Ioc.ConfigureServicesMock;
-using IConfigureMock = GraphQL.Presentation.Configurations.IConfigureMock;
 
 namespace GraphQL.Presentation
 {
@@ -10,13 +10,18 @@ namespace GraphQL.Presentation
     {
         public static void ConfigureServices(IServiceCollection collection)
         {
-            var modules = new ConfigureServicesMock();
-            modules.Execute(collection).Wait();
+            new ConfigureSettings().Execute(collection).Wait();
+            new ConfigureMemoryStorages().Execute(collection).Wait();
+            new ConfigureRepositories().Execute(collection).Wait();
+            new ConfigureBusinessCommands().Execute(collection).Wait();
+            new ConfigureGraph().Execute(collection).Wait();
         }
 
-        public static void Configure(IApplicationBuilder builder, IConfigureMock configure)
+        public static void Configure(IApplicationBuilder builder)
         {
-            configure.Execute(builder).Wait();
+            builder.UseMvc();
+            builder.UseGraphiQl();
+            builder.UseDeveloperExceptionPage();
         }
     }
 }

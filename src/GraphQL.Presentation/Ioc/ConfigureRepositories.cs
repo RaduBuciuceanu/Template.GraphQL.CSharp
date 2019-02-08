@@ -4,14 +4,14 @@ using GraphQL.Business.Repositories;
 using GraphQL.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation.Ioc.Modules
+namespace GraphQL.Presentation.Ioc
 {
     internal class ConfigureRepositories : IConfigureServices
     {
         public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
-                .Do(_ => _.AddScoped<IMessageRepository, MessageRepository>());
+                .Do(services => services.AddTransient<IMessageRepository, MessageRepository>());
         }
     }
 }
