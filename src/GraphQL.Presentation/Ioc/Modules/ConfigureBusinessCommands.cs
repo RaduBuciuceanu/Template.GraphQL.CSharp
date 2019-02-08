@@ -3,7 +3,7 @@ using System.Reactive.Linq;
 using GraphQL.Business.Commands;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation.Main.Ioc.Modules
+namespace GraphQL.Presentation.Ioc.Modules
 {
     internal class ConfigureBusinessCommands : IConfigureServices
     {

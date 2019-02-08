@@ -1,10 +1,10 @@
 ﻿using System.Reactive.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureServicesProduction = GraphQL.Presentation.Main.Ioc.ConfigureServicesProduction;
-using IConfigureProduction = GraphQL.Presentation.Main.Configurations.IConfigureProduction;
+using ConfigureServicesProduction = GraphQL.Presentation.Ioc.ConfigureServicesProduction;
+using IConfigureProduction = GraphQL.Presentation.Configurations.IConfigureProduction;
 
-namespace GraphQL.Presentation.Main
+namespace GraphQL.Presentation
 {
     public class StartupProduction
     {

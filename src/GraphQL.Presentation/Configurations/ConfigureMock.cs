@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using Microsoft.AspNetCore.Builder;
 
-namespace GraphQL.Presentation.Main.Configurations
+namespace GraphQL.Presentation.Configurations
 {
     public class ConfigureMock : IConfigureMock
     {

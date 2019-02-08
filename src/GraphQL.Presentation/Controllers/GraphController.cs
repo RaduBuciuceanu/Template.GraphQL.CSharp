@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GraphQL.Presentation.Main.Dtos;
+using GraphQL.Presentation.Dtos;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation.Main.Controllers
+namespace GraphQL.Presentation.Controllers
 {
     [Route("graphql")]
     public class GraphController : Controller

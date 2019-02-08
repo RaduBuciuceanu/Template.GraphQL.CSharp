@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
 using MessageModel = GraphQL.Business.Models.Message;
 
-namespace GraphQL.Presentation.Main.GraphQL.Types
+namespace GraphQL.Presentation.GraphQL.Types
 {
     public class Message : ObjectGraphType<MessageModel>
     {

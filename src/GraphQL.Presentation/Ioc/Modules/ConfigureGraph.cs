@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
-using CreateMessage = GraphQL.Presentation.Main.GraphQL.Mutations.CreateMessage;
-using GetMessages = GraphQL.Presentation.Main.GraphQL.Queries.GetMessages;
-using GraphSchema = GraphQL.Presentation.Main.GraphQL.GraphSchema;
+using CreateMessage = GraphQL.Presentation.GraphQL.Mutations.CreateMessage;
+using GetMessages = GraphQL.Presentation.GraphQL.Queries.GetMessages;
+using GraphSchema = GraphQL.Presentation.GraphQL.GraphSchema;
 using ICreateMessageCommand = GraphQL.Business.Commands.ICreateMessage;
 using IMessageCreatedCommand = GraphQL.Business.Commands.IMessageCreated;
-using IMutation = GraphQL.Presentation.Main.GraphQL.Contract.IMutation;
-using IQuery = GraphQL.Presentation.Main.GraphQL.Contract.IQuery;
-using ISubscription = GraphQL.Presentation.Main.GraphQL.Contract.ISubscription;
-using MessageCreated = GraphQL.Presentation.Main.GraphQL.Subscriptions.MessageCreated;
-using MutationNode = GraphQL.Presentation.Main.GraphQL.Main.Mutation;
-using QueryNode = GraphQL.Presentation.Main.GraphQL.Main.Query;
-using SubscriptionNode = GraphQL.Presentation.Main.GraphQL.Main.Subscription;
+using IMutation = GraphQL.Presentation.GraphQL.Contract.IMutation;
+using IQuery = GraphQL.Presentation.GraphQL.Contract.IQuery;
+using ISubscription = GraphQL.Presentation.GraphQL.Contract.ISubscription;
+using MessageCreated = GraphQL.Presentation.GraphQL.Subscriptions.MessageCreated;
+using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
+using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
+using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
-namespace GraphQL.Presentation.Main.Ioc.Modules
+namespace GraphQL.Presentation.Ioc.Modules
 {
     internal class ConfigureGraph : IConfigureServices
     {

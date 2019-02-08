@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Reactive.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureDevelopment = GraphQL.Presentation.Main.Configurations.ConfigureDevelopment;
-using ConfigureMock = GraphQL.Presentation.Main.Configurations.ConfigureMock;
-using ConfigureProduction = GraphQL.Presentation.Main.Configurations.ConfigureProduction;
-using ConfigureStaging = GraphQL.Presentation.Main.Configurations.ConfigureStaging;
-using IConfigureDevelopment = GraphQL.Presentation.Main.Configurations.IConfigureDevelopment;
-using IConfigureMock = GraphQL.Presentation.Main.Configurations.IConfigureMock;
-using IConfigureProduction = GraphQL.Presentation.Main.Configurations.IConfigureProduction;
-using IConfigureStaging = GraphQL.Presentation.Main.Configurations.IConfigureStaging;
+using ConfigureDevelopment = GraphQL.Presentation.Configurations.ConfigureDevelopment;
+using ConfigureMock = GraphQL.Presentation.Configurations.ConfigureMock;
+using ConfigureProduction = GraphQL.Presentation.Configurations.ConfigureProduction;
+using ConfigureStaging = GraphQL.Presentation.Configurations.ConfigureStaging;
+using IConfigureDevelopment = GraphQL.Presentation.Configurations.IConfigureDevelopment;
+using IConfigureMock = GraphQL.Presentation.Configurations.IConfigureMock;
+using IConfigureProduction = GraphQL.Presentation.Configurations.IConfigureProduction;
+using IConfigureStaging = GraphQL.Presentation.Configurations.IConfigureStaging;
 
-namespace GraphQL.Presentation.Main.Ioc.Modules
+namespace GraphQL.Presentation.Ioc.Modules
 {
     public class ConfigureConfigurations : IConfigureServices
     {

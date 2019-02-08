@@ -1,10 +1,10 @@
 ﻿using System;
-using GraphQL.Presentation.Main.GraphQL.Contract;
-using GraphQL.Presentation.Main.GraphQL.Types;
+using GraphQL.Presentation.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;
 using MessageModel = GraphQL.Business.Models.Message;
 
-namespace GraphQL.Presentation.Main.GraphQL.Queries
+namespace GraphQL.Presentation.GraphQL.Queries
 {
     public class GetMessages : IQuery
     {

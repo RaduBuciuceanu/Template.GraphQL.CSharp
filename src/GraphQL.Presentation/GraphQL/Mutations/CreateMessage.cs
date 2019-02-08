@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reactive.Threading.Tasks;
 using GraphQL.Business.Commands;
-using GraphQL.Presentation.Main.GraphQL.Contract;
-using GraphQL.Presentation.Main.GraphQL.Types;
+using GraphQL.Presentation.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;
-using MessageInput = GraphQL.Presentation.Main.GraphQL.Types.Inputs.MessageInput;
+using MessageInput = GraphQL.Presentation.GraphQL.Types.Inputs.MessageInput;
 using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 
-namespace GraphQL.Presentation.Main.GraphQL.Mutations
+namespace GraphQL.Presentation.GraphQL.Mutations
 {
     public class CreateMessage : IMutation
     {

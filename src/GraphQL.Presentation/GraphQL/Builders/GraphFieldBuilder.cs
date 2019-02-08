@@ -1,9 +1,9 @@
 ﻿using System;
-using GraphQL.Presentation.Main.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Resolvers;
 using GraphQL.Types;
 
-namespace GraphQL.Presentation.Main.GraphQL.Builders
+namespace GraphQL.Presentation.GraphQL.Builders
 {
     internal class GraphFieldBuilder
     {

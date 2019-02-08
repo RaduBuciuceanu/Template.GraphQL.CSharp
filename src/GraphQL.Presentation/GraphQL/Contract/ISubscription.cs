@@ -1,7 +1,7 @@
 ﻿using System;
 using GraphQL.Subscription;
 
-namespace GraphQL.Presentation.Main.GraphQL.Contract
+namespace GraphQL.Presentation.GraphQL.Contract
 {
     public interface ISubscription : INode
     {

@@ -4,7 +4,7 @@ using GraphiQl;
 using GraphQL.Business;
 using Microsoft.AspNetCore.Builder;
 
-namespace GraphQL.Presentation.Main.Configurations
+namespace GraphQL.Presentation.Configurations
 {
     internal class ConfigureCommon : ICommand<IApplicationBuilder, IApplicationBuilder>
     {

@@ -1,4 +1,4 @@
-﻿namespace GraphQL.Presentation.Main.GraphQL.Contract
+﻿namespace GraphQL.Presentation.GraphQL.Contract
 {
     public interface IMutation : INode, IArgumentNode
     {

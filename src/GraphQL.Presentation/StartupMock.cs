@@ -1,10 +1,10 @@
 ﻿using System.Reactive.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureServicesMock = GraphQL.Presentation.Main.Ioc.ConfigureServicesMock;
-using IConfigureMock = GraphQL.Presentation.Main.Configurations.IConfigureMock;
+using ConfigureServicesMock = GraphQL.Presentation.Ioc.ConfigureServicesMock;
+using IConfigureMock = GraphQL.Presentation.Configurations.IConfigureMock;
 
-namespace GraphQL.Presentation.Main
+namespace GraphQL.Presentation
 {
     public class StartupMock
     {

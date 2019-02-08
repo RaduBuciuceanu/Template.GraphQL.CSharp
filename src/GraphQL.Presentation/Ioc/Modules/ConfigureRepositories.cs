@@ -4,7 +4,7 @@ using GraphQL.Business.Repositories;
 using GraphQL.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation.Main.Ioc.Modules
+namespace GraphQL.Presentation.Ioc.Modules
 {
     internal class ConfigureRepositories : IConfigureServices
     {

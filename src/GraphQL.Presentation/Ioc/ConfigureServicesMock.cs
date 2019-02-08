@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL.Presentation.Main.Ioc
+namespace GraphQL.Presentation.Ioc
 {
     public class ConfigureServicesMock : IConfigureServices
     {

@@ -1,10 +1,10 @@
 ﻿using System.Reactive.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ConfigureServicesDevelopment = GraphQL.Presentation.Main.Ioc.ConfigureServicesDevelopment;
-using IConfigureDevelopment = GraphQL.Presentation.Main.Configurations.IConfigureDevelopment;
+using ConfigureServicesDevelopment = GraphQL.Presentation.Ioc.ConfigureServicesDevelopment;
+using IConfigureDevelopment = GraphQL.Presentation.Configurations.IConfigureDevelopment;
 
-namespace GraphQL.Presentation.Main
+namespace GraphQL.Presentation
 {
     public class StartupDevelopment
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 
-namespace GraphQL.Presentation.Main.Configurations
+namespace GraphQL.Presentation.Configurations
 {
     public class ConfigureStaging : IConfigureStaging
     {

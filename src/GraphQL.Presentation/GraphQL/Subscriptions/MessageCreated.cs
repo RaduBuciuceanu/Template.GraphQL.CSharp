@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Reactive;
 using GraphQL.Business.Commands;
-using GraphQL.Presentation.Main.GraphQL.Contract;
-using GraphQL.Presentation.Main.GraphQL.Types;
+using GraphQL.Presentation.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Subscription;
 using GraphQL.Types;
 
-namespace GraphQL.Presentation.Main.GraphQL.Subscriptions
+namespace GraphQL.Presentation.GraphQL.Subscriptions
 {
     public class MessageCreated : ISubscription
     {

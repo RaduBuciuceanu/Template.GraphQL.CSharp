@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
 using MessageInputModel = GraphQL.Business.Models.Inputs.MessageInput;
 
-namespace GraphQL.Presentation.Main.GraphQL.Types.Inputs
+namespace GraphQL.Presentation.GraphQL.Types.Inputs
 {
     public class MessageInput : InputObjectGraphType<MessageInputModel>
     {

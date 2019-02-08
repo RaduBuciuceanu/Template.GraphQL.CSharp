@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using GraphQL.Presentation.Main.GraphQL.Builders;
-using GraphQL.Presentation.Main.GraphQL.Contract;
+using GraphQL.Presentation.GraphQL.Builders;
+using GraphQL.Presentation.GraphQL.Contract;
 using GraphQL.Types;
 
-namespace GraphQL.Presentation.Main.GraphQL.Main
+namespace GraphQL.Presentation.GraphQL.Main
 {
     public sealed class Subscription : ObjectGraphType<object>
     {

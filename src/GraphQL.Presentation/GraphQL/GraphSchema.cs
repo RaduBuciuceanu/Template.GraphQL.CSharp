@@ -1,9 +1,9 @@
 ﻿using GraphQL.Types;
-using MutationNode = GraphQL.Presentation.Main.GraphQL.Main.Mutation;
-using QueryNode = GraphQL.Presentation.Main.GraphQL.Main.Query;
-using SubscriptionNode = GraphQL.Presentation.Main.GraphQL.Main.Subscription;
+using MutationNode = GraphQL.Presentation.GraphQL.Main.Mutation;
+using QueryNode = GraphQL.Presentation.GraphQL.Main.Query;
+using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
-namespace GraphQL.Presentation.Main.GraphQL
+namespace GraphQL.Presentation.GraphQL
 {
     public class GraphSchema : Schema
     {
