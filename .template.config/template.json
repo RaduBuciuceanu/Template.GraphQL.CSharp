@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Radu B.",
+  "classifications": [
+    "Web/Empty"
+  ],
+  "name": "GraphQL",
+  "identity": "GraphQL",
+  "shortName": "graphql",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "GraphQL",
+  "preferNameDirectory": true,
+  "symbols": {}
+}
