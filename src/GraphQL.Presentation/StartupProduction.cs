@@ -11,7 +11,7 @@ namespace GraphQL.Presentation
         {
             new ConfigureSettings().Execute(collection).Wait();
             new ConfigureMemoryStorages().Execute(collection).Wait();
-            new ConfigureRepositories().Execute(collection).Wait();
+            new ConfigureBusinessRepositories().Execute(collection).Wait();
             new ConfigureBusinessCommands().Execute(collection).Wait();
             new ConfigureGraph().Execute(collection).Wait();
         }

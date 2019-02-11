@@ -8,18 +8,18 @@ namespace GraphQL.Data
 {
     public class MemoryStorage : IStorage
     {
-        private static readonly ICollection<Entity> Entities;
+        private readonly ICollection<Entity> _entities;
 
-        static MemoryStorage()
+        public MemoryStorage()
         {
-            Entities = new List<Entity>();
+            _entities = new List<Entity>();
         }
 
         public IObservable<TEntity> Insert<TEntity>(TEntity entity) where TEntity : Entity
         {
             return Observable
                 .Return(entity)
-                .Do(Entities.Add);
+                .Do(_entities.Add);
         }
 
         public IObservable<TEntity> Update<TEntity>(TEntity entity) where TEntity : Entity
@@ -34,14 +34,14 @@ namespace GraphQL.Data
         public IObservable<TEntity> Delete<TEntity>(TEntity entity) where TEntity : Entity
         {
             return Observable
-                .Return(Entities.Single(instance => instance.Id == entity.Id))
-                .Do(foundEntity => Entities.Remove(foundEntity))
+                .Return(_entities.Single(instance => instance.Id == entity.Id))
+                .Do(foundEntity => _entities.Remove(foundEntity))
                 .Select(_ => entity);
         }
 
         public IObservable<IQueryable<TEntity>> Get<TEntity>() where TEntity : Entity
         {
-            return Observable.Return(Entities.OfType<TEntity>().AsQueryable());
+            return Observable.Return(_entities.OfType<TEntity>().AsQueryable());
         }
     }
 }

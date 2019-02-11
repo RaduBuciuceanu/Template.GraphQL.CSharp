@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Ioc
 {
-    internal class ConfigureRepositories : IConfigureServices
+    internal class ConfigureBusinessRepositories : IConfigureServices
     {
         public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
