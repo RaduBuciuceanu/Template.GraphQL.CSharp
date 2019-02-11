@@ -2,7 +2,12 @@
 
 namespace GraphQL.Business
 {
-    public interface ICommand<in TInput, out TOutput>
+    public interface ICommand
+    {
+        IObservable<TOutput> Execute<TInput, TOutput>(TInput input);
+    }
+
+    public interface ICommand<in TInput, out TOutput> : ICommand
     {
         IObservable<TOutput> Execute(TInput input);
     }

@@ -6,7 +6,7 @@ using GraphQL.Business.Models;
 
 namespace GraphQL.Business.Commands
 {
-    public class MessageCreated : IMessageCreated
+    public class MessageCreated : Command<Unit, Message>, IMessageCreated
     {
         private ISubject<Message> _subject;
 
@@ -15,7 +15,7 @@ namespace GraphQL.Business.Commands
             _subject = new ReplaySubject<Message>(50);
         }
 
-        public IObservable<Message> Execute(Unit input)
+        public override IObservable<Message> Execute(Unit input)
         {
             return _subject;
         }

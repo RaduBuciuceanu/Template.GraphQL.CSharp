@@ -6,7 +6,7 @@ using GraphQL.Business.Repositories;
 
 namespace GraphQL.Business.Commands
 {
-    public class GetMessages : IGetMessages
+    public class GetMessages : Command<Unit, IEnumerable<Message>>, IGetMessages
     {
         private readonly IMessageRepository _messageRepository;
 
@@ -15,7 +15,7 @@ namespace GraphQL.Business.Commands
             _messageRepository = messageRepository;
         }
 
-        public IObservable<IEnumerable<Message>> Execute(Unit input)
+        public override IObservable<IEnumerable<Message>> Execute(Unit input)
         {
             return _messageRepository.GetMany();
         }

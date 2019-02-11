@@ -9,8 +9,11 @@ namespace GraphQL.Presentation
     {
         public static void ConfigureServices(IServiceCollection collection)
         {
+            collection.AddMvc();
+
             new ConfigureSettings().Execute(collection).Wait();
             new ConfigureMemoryStorages().Execute(collection).Wait();
+            new ConfigureDataMapping().Execute(collection).Wait();
             new ConfigureBusinessRepositories().Execute(collection).Wait();
             new ConfigureBusinessCommands().Execute(collection).Wait();
             new ConfigureGraph().Execute(collection).Wait();

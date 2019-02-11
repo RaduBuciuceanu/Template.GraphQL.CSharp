@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
+using GraphQL.Business;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
 using CreateMessage = GraphQL.Presentation.GraphQL.Mutations.CreateMessage;
@@ -18,9 +19,9 @@ using SubscriptionNode = GraphQL.Presentation.GraphQL.Main.Subscription;
 
 namespace GraphQL.Presentation.Ioc
 {
-    internal class ConfigureGraph : IConfigureServices
+    internal class ConfigureGraph : Command<IServiceCollection, IServiceCollection>, IConfigureServices
     {
-        public IObservable<IServiceCollection> Execute(IServiceCollection input)
+        public override IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
                 .Do(services => services.AddScoped(BuildMutations))
