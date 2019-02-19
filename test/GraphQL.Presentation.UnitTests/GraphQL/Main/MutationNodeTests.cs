@@ -10,65 +10,70 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
 {
     public class MutationNodeTests
     {
-        private readonly IMutation _mutation;
+        private readonly Mock<IMutation> _mutationMock;
         private readonly Node<IMutation> _instance;
+
+        private IMutation Mutation => _mutationMock.Object;
 
         public MutationNodeTests()
         {
-            _mutation = BuildMutation();
-            _instance = new Node<IMutation>(new[] { _mutation });
+            _mutationMock = BuildMutationMock();
+            _instance = new Node<IMutation>(new[] { Mutation });
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameName()
         {
-            _instance.Fields.ShouldContain(field => field.Name == _mutation.Name);
+            _instance.Fields.ShouldAllBe(field => field.Name == Mutation.Name);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameDescription()
         {
-            _instance.Fields.ShouldContain(field => field.Description == _mutation.Description);
+            _instance.Fields.ShouldAllBe(field => field.Description == Mutation.Description);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameType()
         {
-            _instance.Fields.ShouldContain(field => field.Type == _mutation.Type);
+            _instance.Fields.ShouldAllBe(field => field.Type == Mutation.Type);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentType()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Type == _mutation.ArgumentType);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Type == Mutation.ArgumentType);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentName()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Name == _mutation.ArgumentName);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Name == Mutation.ArgumentName);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentDescription()
         {
-            _instance.Fields.ShouldContain(
-                field => field.Arguments.First().Description == _mutation.ArgumentDescription);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Description == Mutation.ArgumentDescription);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithResolver()
         {
-            _instance.Fields.ShouldContain(field => field.Resolver != null);
+            var context = new ResolveFieldContext();
+
+            _instance.Fields.First().Resolver.Resolve(context);
+
+            _mutationMock.Verify(mutation => mutation.Resolve(context));
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithoutSubscriber()
         {
-            _instance.Fields.ShouldContain(field => ((EventStreamFieldType)field).Subscriber == null);
+            _instance.Fields.ShouldAllBe(field => ((EventStreamFieldType)field).Subscriber == null);
         }
 
-        private IMutation BuildMutation()
+        private static Mock<IMutation> BuildMutationMock()
         {
             var mock = new Mock<IMutation>();
 
@@ -79,7 +84,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
             mock.Setup(mutation => mutation.ArgumentName).Returns("argumentName");
             mock.Setup(mutation => mutation.ArgumentDescription).Returns("Random argument description here.");
 
-            return mock.Object;
+            return mock;
         }
     }
 }

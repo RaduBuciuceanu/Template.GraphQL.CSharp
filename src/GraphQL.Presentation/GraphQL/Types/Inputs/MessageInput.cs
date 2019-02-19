@@ -8,10 +8,10 @@ namespace GraphQL.Presentation.GraphQL.Types.Inputs
         public MessageInput()
         {
             Name = "messageInput";
-            Description = string.Empty;
+            Description = "A message that contains an author and a content.";
 
-            Field(instance => instance.Author).Description(string.Empty);
-            Field(instance => instance.Content).Description(string.Empty);
+            Field(instance => instance.Author).Description("The author of the message.");
+            Field(instance => instance.Content).Description("The content of the message.");
         }
     }
 }

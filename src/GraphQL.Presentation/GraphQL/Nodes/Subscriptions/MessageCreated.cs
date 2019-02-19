@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Reactive;
 using GraphQL.Business.Commands;
 using GraphQL.Presentation.GraphQL.Nodes.Types;
+using GraphQL.Presentation.GraphQL.Nodes.Types.Base;
 using GraphQL.Presentation.GraphQL.Types;
+using GraphQL.Presentation.GraphQL.Types.Parameters;
 using GraphQL.Subscription;
 using GraphQL.Types;
+using MessageCreatedParameterModel = GraphQL.Business.Models.Parameters.MessageCreatedParameter;
+using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Presentation.GraphQL.Nodes.Subscriptions
 {
-    public class MessageCreated : ISubscription
+    public class MessageCreated : ISubscription, IHasArgument
     {
         private readonly IMessageCreated _messageCreated;
 
@@ -18,6 +21,12 @@ namespace GraphQL.Presentation.GraphQL.Nodes.Subscriptions
 
         public Type Type => typeof(Message);
 
+        public string ArgumentName => "parameter";
+
+        public string ArgumentDescription => "The parameter used to filter messages.";
+
+        public Type ArgumentType => typeof(MessageCreatedParameter);
+
         public MessageCreated(IMessageCreated messageCreated)
         {
             _messageCreated = messageCreated;
@@ -25,12 +34,13 @@ namespace GraphQL.Presentation.GraphQL.Nodes.Subscriptions
 
         public object Resolve(ResolveFieldContext context)
         {
-            return context.Source as Message;
+            return context.Source as MessageModel;
         }
 
         public IObservable<object> Subscribe(ResolveEventStreamContext context)
         {
-            return _messageCreated.Execute(Unit.Default);
+            var input = context.GetArgument<MessageCreatedParameterModel>("parameter");
+            return _messageCreated.Execute(input);
         }
     }
 }

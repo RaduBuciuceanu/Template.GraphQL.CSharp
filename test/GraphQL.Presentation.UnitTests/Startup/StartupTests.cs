@@ -21,16 +21,15 @@ namespace GraphQL.Presentation.UnitTests.Startup
 {
     public abstract class StartupTests
     {
-        private static readonly IServiceCollection Collection = new ServiceCollection();
+        private readonly IServiceProvider _provider;
 
         protected abstract Action<IServiceCollection> Act { get; }
 
         protected StartupTests()
         {
-            if (!Collection.Any())
-            {
-                Act(Collection);
-            }
+            var collection = new ServiceCollection();
+            Act(collection);
+            _provider = collection.BuildServiceProvider();
         }
 
         [Fact]
@@ -102,19 +101,17 @@ namespace GraphQL.Presentation.UnitTests.Startup
         [Fact]
         public void ConfigureServices_Schema_IsRegistered()
         {
-            Collection.ShouldContain(instance => instance.ServiceType == typeof(Schema));
+            Get<Schema, GraphSchema>().ShouldNotBeNull();
         }
 
         protected TService Get<TService>()
         {
-            IServiceProvider provider = Collection.BuildServiceProvider();
-            return provider.GetService<TService>();
+            return _provider.GetService<TService>();
         }
 
         protected TService Get<TService, TImplementation>()
         {
-            IServiceProvider provider = Collection.BuildServiceProvider();
-            return provider.GetServices<TService>().Single(instance => instance is TImplementation);
+            return _provider.GetServices<TService>().Single(instance => instance is TImplementation);
         }
     }
 }

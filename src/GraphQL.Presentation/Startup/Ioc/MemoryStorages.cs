@@ -11,7 +11,7 @@ namespace GraphQL.Presentation.Startup.Ioc
         public override IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
-                .Do(services => services.AddScoped<IStorage, MemoryStorage>());
+                .Do(services => services.AddSingleton<IStorage, MemoryStorage>());
         }
     }
 }

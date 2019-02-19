@@ -25,7 +25,7 @@ namespace GraphQL.Business.UnitTests.Commands
         [Fact]
         public void Execute_InvokesGetMany_FromMessageRepository()
         {
-            _instance.Execute(Unit.Default).Wait();
+            _instance.Execute().Wait();
 
             _mocker.Verify<IMessageRepository>(repository => repository.GetMany());
         }

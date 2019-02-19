@@ -25,4 +25,16 @@
       <ProjectReference Include="..\..\src\GraphQL.Presentation\GraphQL.Presentation.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="GraphQL\Nodes\Mutations\Arguments\MessageInput.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="GraphQL\Nodes\Queries\Arguments\GetMessagesParameter.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="GraphQL\Nodes\Subscriptions\Arguments\MessageCreatedParameter.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

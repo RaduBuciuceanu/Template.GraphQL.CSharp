@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Reactive.Linq;
 using GraphQL.Presentation.GraphQL.Main;
 using GraphQL.Presentation.GraphQL.Nodes.Types;
 using GraphQL.Presentation.GraphQL.Nodes.Types.Base;
+using GraphQL.Subscription;
 using GraphQL.Types;
 using Moq;
 using Shouldly;
@@ -11,77 +13,89 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
 {
     public class SubscriptionNodeTests
     {
-        private readonly ISubscription _subscription;
-        private readonly IHasArgument _hasArgument;
+        private readonly ResolveEventStreamContext _streamContext = new ResolveEventStreamContext();
+        private readonly Mock<ISubscription> _subscriptionMock;
         private readonly Node<ISubscription> _instance;
+
+        private ISubscription Subscription => _subscriptionMock.Object;
+
+        private IHasArgument HasArgument => (IHasArgument)Subscription;
 
         public SubscriptionNodeTests()
         {
-            _subscription = BuildSubscription();
-            _hasArgument = (IHasArgument)_subscription;
-            _instance = new Node<ISubscription>(new[] { _subscription });
+            _subscriptionMock = BuildSubscription();
+            _instance = new Node<ISubscription>(new[] { Subscription });
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameName()
         {
-            _instance.Fields.ShouldContain(field => field.Name == _subscription.Name);
+            _instance.Fields.ShouldAllBe(field => field.Name == Subscription.Name);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameDescription()
         {
-            _instance.Fields.ShouldContain(field => field.Description == _subscription.Description);
+            _instance.Fields.ShouldAllBe(field => field.Description == Subscription.Description);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameType()
         {
-            _instance.Fields.ShouldContain(field => field.Type == _subscription.Type);
+            _instance.Fields.ShouldAllBe(field => field.Type == Subscription.Type);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentType()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Type == _hasArgument.ArgumentType);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Type == HasArgument.ArgumentType);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentName()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Name == _hasArgument.ArgumentName);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Name == HasArgument.ArgumentName);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentDescription()
         {
-            _instance.Fields.ShouldContain(
-                field => field.Arguments.First().Description == _hasArgument.ArgumentDescription);
+            _instance.Fields.ShouldAllBe(
+                field => field.Arguments.First().Description == HasArgument.ArgumentDescription);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithResolver()
         {
-            _instance.Fields.ShouldContain(field => field.Resolver != null);
+            var context = new ResolveFieldContext();
+
+            _instance.Fields.First().Resolver.Resolve(context);
+
+            _subscriptionMock.Verify(subscription => subscription.Resolve(context), Times.Once);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSubscriber()
         {
-            _instance.Fields.ShouldContain(field => ((EventStreamFieldType)field).Subscriber != null);
+            var field = (EventStreamFieldType)_instance.Fields.First();
+
+            field.Subscriber.Subscribe(_streamContext).Wait();
+
+            _subscriptionMock.Verify(subscription => subscription.Subscribe(_streamContext), Times.Once);
         }
 
-        private ISubscription BuildSubscription()
+        private Mock<ISubscription> BuildSubscription()
         {
             var mock = new Mock<ISubscription>();
 
             mock.Setup(mutation => mutation.Name).Returns("subscriptionName");
             mock.Setup(mutation => mutation.Description).Returns("Random description here.");
             mock.Setup(mutation => mutation.Type).Returns(typeof(ObjectGraphType));
+            mock.Setup(mutation => mutation.Subscribe(_streamContext)).Returns(Observable.Return(new object()));
 
             SetupHasArgument(mock);
 
-            return mock.Object;
+            return mock;
         }
 
         private void SetupHasArgument(Mock<ISubscription> mock)

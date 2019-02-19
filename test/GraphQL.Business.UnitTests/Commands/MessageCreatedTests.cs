@@ -1,24 +1,35 @@
-using System;
+﻿using System;
+using System.Reactive;
+using System.Reactive.Linq;
 using GraphQL.Business.Commands;
-using Moq.AutoMock;
+using GraphQL.Business.Models.Parameters;
+using Shouldly;
 using Xunit;
+using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Business.UnitTests.Commands
 {
     public class MessageCreatedTests
     {
-        private readonly AutoMocker _mocker = new AutoMocker();
+        private readonly MessageModel _message = new MessageModel();
         private readonly IMessageCreated _instance;
 
         public MessageCreatedTests()
         {
-            _instance = _mocker.CreateInstance<MessageCreated>();
+            _instance = new MessageCreated();
         }
 
         [Fact]
-        public void Execute_PostsToQueue_When()
+        public void Execute_PostsAndReads_FromQueue()
         {
-            throw new NotImplementedException();
+            MessageModel actual = null;
+
+            using (_instance.Execute(new MessageCreatedParameter()).Subscribe(message => actual = message))
+            {
+                _instance.Execute(_message).Wait();
+            }
+
+            actual.ShouldBe(_message);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GraphQL.Presentation.GraphQL;
 using GraphQL.Presentation.GraphQL.Main;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;

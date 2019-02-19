@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using GraphQL.Business.Models;
+using GraphQL.Business.Models.Parameters;
 
 namespace GraphQL.Business.Commands
 {
-    public class MessageCreated : Command<Unit, Message>, IMessageCreated
+    public class MessageCreated : Command<MessageCreatedParameter, Message>, IMessageCreated
     {
         private ISubject<Message> _subject;
 
@@ -15,7 +15,7 @@ namespace GraphQL.Business.Commands
             _subject = new ReplaySubject<Message>(50);
         }
 
-        public override IObservable<Message> Execute(Unit input)
+        public override IObservable<Message> Execute(MessageCreatedParameter input)
         {
             return _subject;
         }

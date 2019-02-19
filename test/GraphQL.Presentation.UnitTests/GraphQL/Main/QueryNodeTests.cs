@@ -11,58 +11,64 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
 {
     public class QueryNodeTests
     {
-        private readonly IQuery _query;
-        private readonly IHasArgument _hasArgument;
+        private readonly Mock<IQuery> _queryMock;
         private readonly Node<IQuery> _instance;
+
+        private IQuery Query => _queryMock.Object;
+
+        private IHasArgument HasArgument => (IHasArgument)Query;
 
         public QueryNodeTests()
         {
-            _query = BuildQuery();
-            _hasArgument = (IHasArgument)_query;
-            _instance = new Node<IQuery>(new[] { _query });
+            _queryMock = BuildQueryMock();
+            _instance = new Node<IQuery>(new[] { Query });
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameName()
         {
-            _instance.Fields.ShouldContain(field => field.Name == _query.Name);
+            _instance.Fields.ShouldAllBe(field => field.Name == Query.Name);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameDescription()
         {
-            _instance.Fields.ShouldContain(field => field.Description == _query.Description);
+            _instance.Fields.ShouldAllBe(field => field.Description == Query.Description);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameType()
         {
-            _instance.Fields.ShouldContain(field => field.Type == _query.Type);
+            _instance.Fields.ShouldAllBe(field => field.Type == Query.Type);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentType()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Type == _hasArgument.ArgumentType);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Type == HasArgument.ArgumentType);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentName()
         {
-            _instance.Fields.ShouldContain(field => field.Arguments.First().Name == _hasArgument.ArgumentName);
+            _instance.Fields.ShouldAllBe(field => field.Arguments.First().Name == HasArgument.ArgumentName);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithSameArgumentDescription()
         {
-            _instance.Fields.ShouldContain(
-                field => field.Arguments.First().Description == _hasArgument.ArgumentDescription);
+            _instance.Fields.ShouldAllBe(
+                field => field.Arguments.First().Description == HasArgument.ArgumentDescription);
         }
 
         [Fact]
         public void Constructor_ChildNodeIsSet_WithResolver()
         {
-            _instance.Fields.ShouldContain(field => field.Resolver != null);
+            var context = new ResolveFieldContext();
+
+            _instance.Fields.First().Resolver.Resolve(context);
+
+            _queryMock.Verify(query => query.Resolve(context), Times.Once);
         }
 
         [Fact]
@@ -71,7 +77,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
             _instance.Fields.ShouldContain(field => ((EventStreamFieldType)field).Subscriber == null);
         }
 
-        private IQuery BuildQuery()
+        private static Mock<IQuery> BuildQueryMock()
         {
             var mock = new Mock<IQuery>();
 
@@ -81,7 +87,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Main
 
             SetupHasArgument(mock);
 
-            return mock.Object;
+            return mock;
         }
 
         private static void SetupHasArgument(Mock<IQuery> mock)
