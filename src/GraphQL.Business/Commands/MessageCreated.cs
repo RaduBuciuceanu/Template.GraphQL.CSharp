@@ -8,23 +8,32 @@ namespace GraphQL.Business.Commands
 {
     public class MessageCreated : Command<MessageCreatedParameter, Message>, IMessageCreated
     {
-        private ISubject<Message> _subject;
+        private readonly ISubject<Message> _subject;
 
         public MessageCreated()
         {
-            _subject = new ReplaySubject<Message>(50);
+            _subject = new ReplaySubject<Message>(1);
         }
 
         public override IObservable<Message> Execute(MessageCreatedParameter input)
         {
-            return _subject;
+            return _subject.Where(message => FilterByAuthor(message, input.Author));
         }
 
         public IObservable<Message> Execute(Message input)
         {
-            return Observable
-                .Return(input)
-                .Do(_ => _subject.OnNext(input));
+            return Observable.Return(input)
+                .Do(message => _subject.OnNext(input));
+        }
+
+        private static bool FilterByAuthor(Message message, string author)
+        {
+            if (!string.IsNullOrWhiteSpace(author))
+            {
+                return message.Author == author;
+            }
+
+            return true;
         }
     }
 }
