@@ -15,7 +15,7 @@ namespace GraphQL.Presentation.GraphQL.Nodes.Queries
     {
         private readonly IGetMessages _getMessages;
 
-        public Type Type => typeof(ListGraphType<Message>);
+        public Type Type => typeof(MessagePagination);
 
         public string Name => "getMessages";
 
@@ -36,6 +36,10 @@ namespace GraphQL.Presentation.GraphQL.Nodes.Queries
         {
             var parameter = context.GetArgument<GetMessagesParameterModel>("parameter");
             return _getMessages.Execute(parameter).ToTask();
+        }
+
+        private class MessagePagination : Pagination<Message>
+        {
         }
     }
 }

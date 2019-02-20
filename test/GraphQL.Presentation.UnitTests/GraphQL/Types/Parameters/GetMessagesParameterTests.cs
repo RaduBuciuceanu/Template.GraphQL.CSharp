@@ -5,11 +5,11 @@ using Xunit;
 
 namespace GraphQL.Presentation.UnitTests.GraphQL.Types.Parameters
 {
-    public class GetMessagesParametersTests
+    public class GetMessagesParameterTests
     {
         private readonly GetMessagesParameter _instance;
 
-        public GetMessagesParametersTests()
+        public GetMessagesParameterTests()
         {
             _instance = new GetMessagesParameter();
         }
@@ -42,6 +42,24 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Types.Parameters
         public void Constructor_AuthorField_HasRightType()
         {
             _instance.GetField("Id").Type.ShouldBe(typeof(StringGraphType));
+        }
+
+        [Fact]
+        public void Constructor_PaginationField_HasRightName()
+        {
+            _instance.GetField("Pagination").ShouldNotBeNull();
+        }
+
+        [Fact]
+        public void Constructor_PaginationField_HasRightDescription()
+        {
+            _instance.GetField("Pagination").Description.ShouldBe("The pagination info.");
+        }
+
+        [Fact]
+        public void Constructor_PaginationField_HasRightType()
+        {
+            _instance.GetField("Pagination").Type.ShouldBe(typeof(NonNullGraphType<PaginationParameter>));
         }
     }
 }

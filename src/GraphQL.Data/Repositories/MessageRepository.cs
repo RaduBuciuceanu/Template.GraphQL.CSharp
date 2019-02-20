@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Models;
@@ -19,14 +20,16 @@ namespace GraphQL.Data.Repositories
         private readonly IMessageCreated _messageCreated;
         private readonly IAutomapper _mapper;
         private readonly IFilterMessages _filterMessages;
+        private readonly ICreatePagination<MessageEntity> _createPagination;
 
         public MessageRepository(IStorage storage, IMessageCreated messageCreated, IAutomapper mapper,
-            IFilterMessages filterMessages)
+            IFilterMessages filterMessages, ICreatePagination<MessageEntity> createPagination)
         {
             _storage = storage;
             _messageCreated = messageCreated;
             _mapper = mapper;
             _filterMessages = filterMessages;
+            _createPagination = createPagination;
         }
 
         public IObservable<MessageModel> Insert(MessageInput message)
@@ -42,12 +45,14 @@ namespace GraphQL.Data.Repositories
                 .Switch();
         }
 
-        public IObservable<IEnumerable<Message>> GetMany(GetMessagesParameter parameter)
+        public IObservable<Pagination<Message>> GetMany(GetMessagesParameter parameter)
         {
             return _storage.Get<MessageEntity>()
                 .Select(_filterMessages.With(parameter).Execute)
                 .Switch()
-                .Select(_mapper.Execute<IEnumerable<MessageEntity>, IEnumerable<MessageModel>>)
+                .Select(_createPagination.With(parameter.Pagination).Execute)
+                .Switch()
+                .Select(_mapper.Execute<Pagination<MessageEntity>, Pagination<MessageModel>>)
                 .Switch();
         }
     }
