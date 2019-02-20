@@ -1,6 +1,6 @@
 ﻿namespace GraphQL.Data.Entities
 {
-    public class Message
+    public class Message : Entity
     {
         public string Author { get; set; }
 
