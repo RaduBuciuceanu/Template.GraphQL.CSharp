@@ -4,6 +4,7 @@ using System.Reactive.Linq;
 using GraphQL.Business.Commands;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
+using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
 using GraphQL.Data.Mapping;
 using MessageEntity = GraphQL.Data.Entities.Message;
@@ -37,7 +38,7 @@ namespace GraphQL.Data.Repositories
                 .Switch();
         }
 
-        public IObservable<IEnumerable<Message>> GetMany()
+        public IObservable<IEnumerable<Message>> GetMany(GetMessagesParameter parameter)
         {
             return _storage.Get<MessageEntity>()
                 .Select(_mapper.Execute<IEnumerable<MessageEntity>, IEnumerable<MessageModel>>)

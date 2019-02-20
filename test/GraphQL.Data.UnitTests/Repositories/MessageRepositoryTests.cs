@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using GraphQL.Business.Commands;
 using GraphQL.Business.Models.Inputs;
+using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
 using GraphQL.Data.Mapping;
 using GraphQL.Data.Repositories;
@@ -18,13 +19,16 @@ namespace GraphQL.Data.UnitTests.Repositories
     {
         private readonly AutoMocker _mocker = new AutoMocker();
         private readonly MessageInput _input = new MessageInput();
+        private readonly GetMessagesParameter _parameter = new GetMessagesParameter();
         private readonly MessageEntity _entity = new MessageEntity();
         private readonly MessageModel _model = new MessageModel();
         private readonly IMessageRepository _instance;
 
         public MessageRepositoryTests()
         {
-            SetupAutomapper();
+            SetupAutomapperInputEntity();
+            SetupAutomapperEntityModel();
+            SetupAutomapperEntitiesModels();
             SetupStorage();
             SetupMessageCreated();
             _instance = _mocker.CreateInstance<MessageRepository>();
@@ -73,7 +77,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         [Fact]
         public void GetMany_InvokesStorage_ForFetchingEntities()
         {
-            _instance.GetMany().Wait();
+            _instance.GetMany(_parameter).Wait();
 
             _mocker.Verify<IStorage>(storage => storage.Get<MessageEntity>());
         }
@@ -81,21 +85,27 @@ namespace GraphQL.Data.UnitTests.Repositories
         [Fact]
         public void GetMany_ReturnsModels_MappedByAutomapper()
         {
-            IEnumerable<MessageModel> actual = _instance.GetMany().Wait();
+            IEnumerable<MessageModel> actual = _instance.GetMany(_parameter).Wait();
 
             actual.ShouldAllBe(model => model == _model);
         }
 
-        private void SetupAutomapper()
+        private void SetupAutomapperInputEntity()
         {
             _mocker.GetMock<IAutomapper>()
                 .Setup(mapper => mapper.Execute<MessageInput, MessageEntity>(_input))
                 .Returns(Observable.Return(_entity));
+        }
 
+        private void SetupAutomapperEntityModel()
+        {
             _mocker.GetMock<IAutomapper>()
                 .Setup(mapper => mapper.Execute<MessageEntity, MessageModel>(_entity))
                 .Returns(Observable.Return(_model));
+        }
 
+        private void SetupAutomapperEntitiesModels()
+        {
             _mocker.GetMock<IAutomapper>()
                 .Setup(mapper =>
                     mapper.Execute<IEnumerable<MessageEntity>, IEnumerable<MessageModel>>(new[] { _entity }))

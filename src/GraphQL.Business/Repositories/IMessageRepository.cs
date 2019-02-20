@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
+using GraphQL.Business.Models.Parameters;
 
 namespace GraphQL.Business.Repositories
 {
@@ -9,6 +10,6 @@ namespace GraphQL.Business.Repositories
     {
         IObservable<Message> Insert(MessageInput message);
 
-        IObservable<IEnumerable<Message>> GetMany();
+        IObservable<IEnumerable<Message>> GetMany(GetMessagesParameter parameter);
     }
 }

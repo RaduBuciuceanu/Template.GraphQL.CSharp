@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
@@ -18,7 +17,7 @@ namespace GraphQL.Business.Commands
 
         public override IObservable<IEnumerable<Message>> Execute(GetMessagesParameter input)
         {
-             return _messageRepository.GetMany();
+            return _messageRepository.GetMany(input);
         }
     }
 }

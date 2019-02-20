@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Reactive;
 using System.Reactive.Linq;
 using GraphQL.Business.Commands;
 using GraphQL.Business.Models;
+using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
 using Moq.AutoMock;
 using Shouldly;
@@ -13,7 +13,8 @@ namespace GraphQL.Business.UnitTests.Commands
     public class GetMessagesTests
     {
         private readonly AutoMocker _mocker = new AutoMocker();
-        private readonly IEnumerable<Message> _models = new[] { new Message() };
+        private readonly GetMessagesParameter _parameter = new GetMessagesParameter();
+        private readonly IEnumerable<Message> _expectedResult = new[] { new Message() };
         private readonly IGetMessages _instance;
 
         public GetMessagesTests()
@@ -25,24 +26,24 @@ namespace GraphQL.Business.UnitTests.Commands
         [Fact]
         public void Execute_InvokesGetMany_FromMessageRepository()
         {
-            _instance.Execute().Wait();
+            _instance.Execute(_parameter).Wait();
 
-            _mocker.Verify<IMessageRepository>(repository => repository.GetMany());
+            _mocker.Verify<IMessageRepository>(repository => repository.GetMany(_parameter));
         }
 
         [Fact]
         public void Execute_ReturnsModels_ReturnedByRepository()
         {
-            var actual = _instance.Execute().Wait();
+            var actual = _instance.Execute(_parameter).Wait();
 
-            actual.ShouldBe(_models);
+            actual.ShouldBe(_expectedResult);
         }
 
         private void SetupMessageRepository()
         {
             _mocker.GetMock<IMessageRepository>()
-                .Setup(repository => repository.GetMany())
-                .Returns(Observable.Return(_models));
+                .Setup(repository => repository.GetMany(_parameter))
+                .Returns(Observable.Return(_expectedResult));
         }
     }
 }
