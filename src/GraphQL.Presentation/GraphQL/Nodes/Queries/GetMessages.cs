@@ -15,7 +15,7 @@ namespace GraphQL.Presentation.GraphQL.Nodes.Queries
     {
         private readonly IGetMessages _getMessages;
 
-        public Type Type => typeof(Message);
+        public Type Type => typeof(ListGraphType<Message>);
 
         public string Name => "getMessages";
 

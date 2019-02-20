@@ -16,6 +16,7 @@ namespace GraphQL.Presentation.Startup
             new DataMapping().Execute(collection).Wait();
             new BusinessRepositories().Execute(collection).Wait();
             new BusinessCommands().Execute(collection).Wait();
+            new DataCommands().Execute(collection).Wait();
             new Graph().Execute(collection).Wait();
         }
 

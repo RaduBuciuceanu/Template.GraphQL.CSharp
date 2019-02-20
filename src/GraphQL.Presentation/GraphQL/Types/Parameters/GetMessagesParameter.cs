@@ -10,7 +10,7 @@ namespace GraphQL.Presentation.GraphQL.Types.Parameters
             Name = "getMessagesParameter";
             Description = "Parameter passed to getMessages graph node.";
 
-            Field(model => model.Id).Description("The id of the message.");
+            Field(model => model.Id, true).Description("The id of the message.");
         }
     }
 }

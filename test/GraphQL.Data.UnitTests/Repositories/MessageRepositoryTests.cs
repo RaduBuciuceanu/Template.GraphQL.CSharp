@@ -5,8 +5,10 @@ using GraphQL.Business.Commands;
 using GraphQL.Business.Models.Inputs;
 using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
+using GraphQL.Data.Commands;
 using GraphQL.Data.Mapping;
 using GraphQL.Data.Repositories;
+using Moq;
 using Moq.AutoMock;
 using Shouldly;
 using Xunit;
@@ -22,14 +24,17 @@ namespace GraphQL.Data.UnitTests.Repositories
         private readonly GetMessagesParameter _parameter = new GetMessagesParameter();
         private readonly MessageEntity _entity = new MessageEntity();
         private readonly MessageModel _model = new MessageModel();
+        private readonly IQueryable<MessageEntity> _allEntities;
         private readonly IMessageRepository _instance;
 
         public MessageRepositoryTests()
         {
+            _allEntities = new[] { _entity }.AsQueryable();
             SetupAutomapperInputEntity();
             SetupAutomapperEntityModel();
             SetupAutomapperEntitiesModels();
             SetupStorage();
+            SetupFilter();
             SetupMessageCreated();
             _instance = _mocker.CreateInstance<MessageRepository>();
         }
@@ -83,6 +88,22 @@ namespace GraphQL.Data.UnitTests.Repositories
         }
 
         [Fact]
+        public void GetMany_InvokesWith_FromFilterMessages()
+        {
+            _instance.GetMany(_parameter).Wait();
+
+            _mocker.Verify<IFilterMessages>(filter => filter.With(_parameter), Times.Once);
+        }
+
+        [Fact]
+        public void GetMany_InvokesExecute_FromFilterMessages()
+        {
+            _instance.GetMany(_parameter).Wait();
+
+            _mocker.Verify<IFilterMessages>(filter => filter.Execute(_allEntities), Times.Once);
+        }
+
+        [Fact]
         public void GetMany_ReturnsModels_MappedByAutomapper()
         {
             IEnumerable<MessageModel> actual = _instance.GetMany(_parameter).Wait();
@@ -120,7 +141,18 @@ namespace GraphQL.Data.UnitTests.Repositories
 
             _mocker.GetMock<IStorage>()
                 .Setup(storage => storage.Get<MessageEntity>())
-                .Returns(Observable.Return(new[] { _entity }.AsQueryable()));
+                .Returns(Observable.Return(_allEntities));
+        }
+
+        private void SetupFilter()
+        {
+            _mocker.GetMock<IFilterMessages>()
+                .Setup(filter => filter.With(_parameter))
+                .Returns(_mocker.Get<IFilterMessages>());
+
+            _mocker.GetMock<IFilterMessages>()
+                .Setup(filter => filter.Execute(_allEntities))
+                .Returns(Observable.Return(_allEntities));
         }
 
         private void SetupMessageCreated()

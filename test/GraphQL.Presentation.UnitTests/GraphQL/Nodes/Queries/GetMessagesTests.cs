@@ -33,7 +33,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Nodes.Queries
         [Fact]
         public void Constructor_Type_IsSet()
         {
-            _instance.Type.ShouldBe(typeof(Message));
+            _instance.Type.ShouldBe(typeof(ListGraphType<Message>));
         }
 
         [Fact]

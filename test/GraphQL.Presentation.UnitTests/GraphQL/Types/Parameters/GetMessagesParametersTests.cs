@@ -41,7 +41,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Types.Parameters
         [Fact]
         public void Constructor_AuthorField_HasRightType()
         {
-            _instance.GetField("Id").Type.ShouldBe(typeof(NonNullGraphType<StringGraphType>));
+            _instance.GetField("Id").Type.ShouldBe(typeof(StringGraphType));
         }
     }
 }

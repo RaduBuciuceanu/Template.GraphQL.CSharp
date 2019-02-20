@@ -2,6 +2,7 @@
 using System.Linq;
 using GraphQL.Business.Commands;
 using GraphQL.Business.Repositories;
+using GraphQL.Data.Commands;
 using GraphQL.Data.Mapping;
 using GraphQL.Data.Repositories;
 using GraphQL.Presentation.GraphQL.Main;
@@ -60,6 +61,12 @@ namespace GraphQL.Presentation.UnitTests.Startup
         public void ConfigureServices_IGetMessages_IsRegistered()
         {
             Get<IGetMessages>().ShouldBeOfType<GetMessagesCommand>();
+        }
+
+        [Fact]
+        public void ConfigureServices_IFilterMessages_IsRegistered()
+        {
+            Get<IFilterMessages>().ShouldBeOfType<FilterMessages>();
         }
 
         [Fact]
