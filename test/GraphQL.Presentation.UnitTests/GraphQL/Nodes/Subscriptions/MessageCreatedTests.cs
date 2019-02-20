@@ -1,5 +1,5 @@
 ﻿using System.Reactive.Linq;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Presentation.GraphQL.Types.Parameters;
 using GraphQL.Presentation.UnitTests.GraphQL.Nodes.Base;
@@ -10,7 +10,7 @@ using Moq.AutoMock;
 using Shouldly;
 using Xunit;
 using MessageCreated = GraphQL.Presentation.GraphQL.Nodes.Subscriptions.MessageCreated;
-using MessageCreatedCommand = GraphQL.Business.Commands.MessageCreated;
+using MessageCreatedCommand = GraphQL.Business.Commands.Messages.MessageCreated;
 using MessageCreatedParameterModel = GraphQL.Business.Models.Parameters.MessageCreatedParameter;
 using MessageModel = GraphQL.Business.Models.Message;
 

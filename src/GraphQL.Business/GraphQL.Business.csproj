@@ -20,5 +20,9 @@
         <AdditionalFiles Include="../GraphQL.Sources.CodeStyle/stylecop.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\Messages" />
+    </ItemGroup>
+
 </Project>
 

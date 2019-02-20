@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reactive.Threading.Tasks;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using GraphQL.Presentation.GraphQL.Nodes.Types;
 using GraphQL.Presentation.GraphQL.Types;
 using GraphQL.Types;

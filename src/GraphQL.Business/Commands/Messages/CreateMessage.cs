@@ -3,7 +3,7 @@ using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
 using GraphQL.Business.Repositories;
 
-namespace GraphQL.Business.Commands
+namespace GraphQL.Business.Commands.Messages
 {
     public class CreateMessage : Command<MessageInput, Message>, ICreateMessage
     {

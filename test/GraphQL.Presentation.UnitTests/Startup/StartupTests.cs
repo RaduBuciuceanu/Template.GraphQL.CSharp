@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Repositories;
 using GraphQL.Data.Commands;
 using GraphQL.Data.Mapping;
@@ -11,11 +11,11 @@ using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using Xunit;
-using CreateMessageCommand = GraphQL.Business.Commands.CreateMessage;
+using CreateMessageCommand = GraphQL.Business.Commands.Messages.CreateMessage;
 using CreateMessageMutation = GraphQL.Presentation.GraphQL.Nodes.Mutations.CreateMessage;
-using GetMessagesCommand = GraphQL.Business.Commands.GetMessages;
+using GetMessagesCommand = GraphQL.Business.Commands.Messages.GetMessages;
 using GetMessagesQuery = GraphQL.Presentation.GraphQL.Nodes.Queries.GetMessages;
-using MessageCreatedCommand = GraphQL.Business.Commands.MessageCreated;
+using MessageCreatedCommand = GraphQL.Business.Commands.Messages.MessageCreated;
 using MessageCreatedSubscription = GraphQL.Presentation.GraphQL.Nodes.Subscriptions.MessageCreated;
 
 namespace GraphQL.Presentation.UnitTests.Startup

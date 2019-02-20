@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reactive.Linq;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
@@ -8,7 +8,7 @@ using Moq.AutoMock;
 using Shouldly;
 using Xunit;
 
-namespace GraphQL.Business.UnitTests.Commands
+namespace GraphQL.Business.UnitTests.Commands.Messages
 {
     public class GetMessagesTests
     {

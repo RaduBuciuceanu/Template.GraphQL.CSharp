@@ -4,7 +4,7 @@ using GraphQL.Business.Models;
 using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
 
-namespace GraphQL.Business.Commands
+namespace GraphQL.Business.Commands.Messages
 {
     public class GetMessages : Command<GetMessagesParameter, IEnumerable<Message>>, IGetMessages
     {

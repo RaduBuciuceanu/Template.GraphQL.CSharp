@@ -4,7 +4,7 @@ using System.Reactive.Subjects;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Parameters;
 
-namespace GraphQL.Business.Commands
+namespace GraphQL.Business.Commands.Messages
 {
     public class MessageCreated : Command<MessageCreatedParameter, Message>, IMessageCreated
     {

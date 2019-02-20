@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
 using GraphQL.Business.Models.Parameters;

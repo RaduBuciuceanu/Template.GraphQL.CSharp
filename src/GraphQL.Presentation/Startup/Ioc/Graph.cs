@@ -7,8 +7,8 @@ using GraphQL.Presentation.GraphQL.Main;
 using GraphQL.Presentation.GraphQL.Nodes.Types;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
-using ICreateMessageCommand = GraphQL.Business.Commands.ICreateMessage;
-using IMessageCreatedCommand = GraphQL.Business.Commands.IMessageCreated;
+using ICreateMessageCommand = GraphQL.Business.Commands.Messages.ICreateMessage;
+using IMessageCreatedCommand = GraphQL.Business.Commands.Messages.IMessageCreated;
 
 namespace GraphQL.Presentation.Startup.Ioc
 {

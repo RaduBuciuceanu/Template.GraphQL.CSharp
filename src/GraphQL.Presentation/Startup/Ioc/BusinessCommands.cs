@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 using GraphQL.Business;
-using GraphQL.Business.Commands;
+using GraphQL.Business.Commands.Messages;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Startup.Ioc
