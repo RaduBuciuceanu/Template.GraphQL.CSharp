@@ -11,7 +11,8 @@ namespace GraphQL.Presentation.Startup.Ioc
         public override IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
-                .Do(services => services.AddTransient<IFilterMessages, FilterMessages>());
+                .Do(services => services.AddTransient<IFilterMessages, FilterMessages>())
+                .Do(services => services.AddTransient(typeof(ICreatePagination<>), typeof(CreatePagination<>)));
         }
     }
 }

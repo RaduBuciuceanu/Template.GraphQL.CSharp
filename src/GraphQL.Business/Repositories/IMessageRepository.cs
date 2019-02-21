@@ -10,6 +10,6 @@ namespace GraphQL.Business.Repositories
     {
         IObservable<Message> Insert(MessageInput message);
 
-        IObservable<IEnumerable<Message>> GetMany(GetMessagesParameter parameter);
+        IObservable<Pagination<Message>> GetMany(GetMessagesParameter parameter);
     }
 }

@@ -70,6 +70,12 @@ namespace GraphQL.Presentation.UnitTests.Startup
         }
 
         [Fact]
+        public void ConfigureServices_ICreatePagination_IsRegistered()
+        {
+            Get<ICreatePagination<object>>().ShouldBeOfType<CreatePagination<object>>();
+        }
+
+        [Fact]
         public void ConfigureServices_CreateMessageMutation_IsRegistered()
         {
             Get<IMutation, CreateMessageMutation>().ShouldNotBeNull();

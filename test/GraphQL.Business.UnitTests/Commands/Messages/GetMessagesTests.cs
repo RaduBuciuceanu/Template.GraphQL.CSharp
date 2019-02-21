@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Models;
 using GraphQL.Business.Models.Parameters;
@@ -14,7 +13,7 @@ namespace GraphQL.Business.UnitTests.Commands.Messages
     {
         private readonly AutoMocker _mocker = new AutoMocker();
         private readonly GetMessagesParameter _parameter = new GetMessagesParameter();
-        private readonly IEnumerable<Message> _expectedResult = new[] { new Message() };
+        private readonly Pagination<Message> _expectedResult = new Pagination<Message>();
         private readonly IGetMessages _instance;
 
         public GetMessagesTests()

@@ -13,13 +13,14 @@ using Xunit;
 using GetMessages = GraphQL.Presentation.GraphQL.Nodes.Queries.GetMessages;
 using GetMessagesParameterModel = GraphQL.Business.Models.Parameters.GetMessagesParameter;
 using MessageModel = GraphQL.Business.Models.Message;
+using MessagePaginationModel = GraphQL.Business.Models.Pagination<GraphQL.Business.Models.Message>;
 
 namespace GraphQL.Presentation.UnitTests.GraphQL.Nodes.Queries
 {
     public class GetMessagesTests : HasArgumentTests<GetMessagesParameterModel, ResolveFieldContext>
     {
         private readonly AutoMocker _mocker = new AutoMocker();
-        private readonly IEnumerable<MessageModel> _expectedResult = new List<MessageModel>();
+        private readonly MessagePaginationModel _expectedResult = new MessagePaginationModel();
         private readonly GetMessages _instance;
 
         private GetMessagesParameterModel _actualArgument;
@@ -33,7 +34,9 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Nodes.Queries
         [Fact]
         public void Constructor_Type_IsSet()
         {
-            _instance.Type.ShouldBe(typeof(ListGraphType<Message>));
+            bool actual = typeof(Pagination<Message>).IsAssignableFrom(_instance.Type);
+
+            actual.ShouldBeTrue();
         }
 
         [Fact]
@@ -69,7 +72,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Nodes.Queries
         [Fact]
         public async Task Resolve_InvokesCommand_WithRightId()
         {
-            await (Task<IEnumerable<MessageModel>>)_instance.Resolve(Context);
+            await (Task<MessagePaginationModel>)_instance.Resolve(Context);
 
             _actualArgument.Id.ShouldBe(ExpectedArgument.Id);
         }
@@ -77,7 +80,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Nodes.Queries
         [Fact]
         public async Task Resolve_ReturnsResult_FromGetMessagesCommand()
         {
-            var actual = await (Task<IEnumerable<MessageModel>>)_instance.Resolve(Context);
+            var actual = await (Task<MessagePaginationModel>)_instance.Resolve(Context);
 
             actual.ShouldBe(_expectedResult);
         }

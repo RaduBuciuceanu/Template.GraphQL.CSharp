@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reactive.Linq;
 using GraphQL.Business.Commands.Messages;
+using GraphQL.Business.Models;
 using GraphQL.Business.Models.Inputs;
 using GraphQL.Business.Models.Parameters;
 using GraphQL.Business.Repositories;
 using GraphQL.Data.Commands;
 using GraphQL.Data.Mapping;
 using GraphQL.Data.Repositories;
+using GraphQL.Data.UnitTests.Repositories.Setup;
 using Moq;
-using Moq.AutoMock;
 using Shouldly;
 using Xunit;
 using MessageEntity = GraphQL.Data.Entities.Message;
@@ -17,26 +17,25 @@ using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Data.UnitTests.Repositories
 {
-    public class MessageRepositoryTests
+    public class MessageRepositoryTests : RepositoryTests
     {
-        private readonly AutoMocker _mocker = new AutoMocker();
         private readonly MessageInput _input = new MessageInput();
         private readonly GetMessagesParameter _parameter = new GetMessagesParameter();
         private readonly MessageEntity _entity = new MessageEntity();
         private readonly MessageModel _model = new MessageModel();
         private readonly IQueryable<MessageEntity> _allEntities;
+        private readonly Pagination<MessageEntity> _entitiesPagination;
+        private readonly Pagination<MessageModel> _modelsPagination;
         private readonly IMessageRepository _instance;
 
         public MessageRepositoryTests()
         {
             _allEntities = new[] { _entity }.AsQueryable();
-            SetupAutomapperInputEntity();
-            SetupAutomapperEntityModel();
-            SetupAutomapperEntitiesModels();
-            SetupStorage();
+            _entitiesPagination = new Pagination<MessageEntity> { Items = _allEntities.ToList() };
+            _modelsPagination = new Pagination<MessageModel> { Items = new[] { _model } };
             SetupFilter();
             SetupMessageCreated();
-            _instance = _mocker.CreateInstance<MessageRepository>();
+            _instance = Mocker.CreateInstance<MessageRepository>();
         }
 
         [Fact]
@@ -44,7 +43,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.Insert(_input).Wait();
 
-            _mocker.Verify<IAutomapper>(mapper => mapper.Execute<MessageInput, MessageEntity>(_input));
+            Mocker.Verify<IAutomapper>(mapper => mapper.Execute<MessageInput, MessageEntity>(_input));
         }
 
         [Fact]
@@ -52,7 +51,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.Insert(_input).Wait();
 
-            _mocker.Verify<IStorage>(storage => storage.Insert(_entity));
+            Mocker.Verify<IStorage>(storage => storage.Insert(_entity));
         }
 
         [Fact]
@@ -60,7 +59,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.Insert(_input).Wait();
 
-            _mocker.Verify<IAutomapper>(mapper => mapper.Execute<MessageEntity, MessageModel>(_entity));
+            Mocker.Verify<IAutomapper>(mapper => mapper.Execute<MessageEntity, MessageModel>(_entity));
         }
 
         [Fact]
@@ -68,7 +67,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.Insert(_input).Wait();
 
-            _mocker.Verify<IMessageCreated>(messageCreated => messageCreated.Execute(_model));
+            Mocker.Verify<IMessageCreated>(messageCreated => messageCreated.Execute(_model));
         }
 
         [Fact]
@@ -84,7 +83,7 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.GetMany(_parameter).Wait();
 
-            _mocker.Verify<IStorage>(storage => storage.Get<MessageEntity>());
+            Mocker.Verify<IStorage>(storage => storage.Get<MessageEntity>());
         }
 
         [Fact]
@@ -92,7 +91,24 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.GetMany(_parameter).Wait();
 
-            _mocker.Verify<IFilterMessages>(filter => filter.With(_parameter), Times.Once);
+            Mocker.Verify<IFilterMessages>(filter => filter.With(_parameter), Times.Once);
+        }
+
+        [Fact]
+        public void GetMany_InvokesWith_FromCreatePagination()
+        {
+            _instance.GetMany(_parameter).Wait();
+
+            Mocker
+                .Verify<ICreatePagination<MessageEntity>>(command => command.With(_parameter.Pagination), Times.Once);
+        }
+
+        [Fact]
+        public void GetMany_InvokesExecute_FromCreatePagination()
+        {
+            _instance.GetMany(_parameter).Wait();
+
+            Mocker.Verify<ICreatePagination<MessageEntity>>(command => command.Execute(_allEntities), Times.Once);
         }
 
         [Fact]
@@ -100,64 +116,51 @@ namespace GraphQL.Data.UnitTests.Repositories
         {
             _instance.GetMany(_parameter).Wait();
 
-            _mocker.Verify<IFilterMessages>(filter => filter.Execute(_allEntities), Times.Once);
+            Mocker.Verify<IFilterMessages>(filter => filter.Execute(_allEntities), Times.Once);
         }
 
         [Fact]
         public void GetMany_ReturnsModels_MappedByAutomapper()
         {
-            IEnumerable<MessageModel> actual = _instance.GetMany(_parameter).Wait();
+            Pagination<MessageModel> actual = _instance.GetMany(_parameter).Wait();
 
-            actual.ShouldAllBe(model => model == _model);
+            actual.Items.ShouldAllBe(model => model == _model);
         }
 
-        private void SetupAutomapperInputEntity()
+        protected override void SetupStorage(StorageSetup setup)
         {
-            _mocker.GetMock<IAutomapper>()
-                .Setup(mapper => mapper.Execute<MessageInput, MessageEntity>(_input))
-                .Returns(Observable.Return(_entity));
+            setup.WithInsert(_entity).WithGet(_allEntities);
         }
 
-        private void SetupAutomapperEntityModel()
+        protected override void SetupAutomapper(AutomapperSetup setup)
         {
-            _mocker.GetMock<IAutomapper>()
-                .Setup(mapper => mapper.Execute<MessageEntity, MessageModel>(_entity))
-                .Returns(Observable.Return(_model));
+            setup
+                .With(_input, _entity)
+                .With(_entity, _model)
+                .WithPagination(_entitiesPagination, _modelsPagination);
         }
 
-        private void SetupAutomapperEntitiesModels()
+        protected override void SetupPagination(CreatePaginationSetup setup)
         {
-            _mocker.GetMock<IAutomapper>()
-                .Setup(mapper =>
-                    mapper.Execute<IEnumerable<MessageEntity>, IEnumerable<MessageModel>>(new[] { _entity }))
-                .Returns(Observable.Return(new[] { _model }));
-        }
-
-        private void SetupStorage()
-        {
-            _mocker.GetMock<IStorage>()
-                .Setup(storage => storage.Insert(_entity))
-                .Returns(Observable.Return(_entity));
-
-            _mocker.GetMock<IStorage>()
-                .Setup(storage => storage.Get<MessageEntity>())
-                .Returns(Observable.Return(_allEntities));
+            setup
+                .With<MessageEntity>(_parameter.Pagination)
+                .With(_allEntities, _entitiesPagination);
         }
 
         private void SetupFilter()
         {
-            _mocker.GetMock<IFilterMessages>()
+            Mocker.GetMock<IFilterMessages>()
                 .Setup(filter => filter.With(_parameter))
-                .Returns(_mocker.Get<IFilterMessages>());
+                .Returns(Mocker.Get<IFilterMessages>());
 
-            _mocker.GetMock<IFilterMessages>()
+            Mocker.GetMock<IFilterMessages>()
                 .Setup(filter => filter.Execute(_allEntities))
                 .Returns(Observable.Return(_allEntities));
         }
 
         private void SetupMessageCreated()
         {
-            _mocker.GetMock<IMessageCreated>()
+            Mocker.GetMock<IMessageCreated>()
                 .Setup(messageCreated => messageCreated.Execute(_model))
                 .Returns(Observable.Return(_model));
         }
