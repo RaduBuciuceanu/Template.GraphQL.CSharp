@@ -12,6 +12,7 @@ namespace GraphQL.Presentation.Startup.Ioc
         public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
+                .Do(services => services.AddScoped<ILogRepository, LogRepository>())
                 .Do(services => services.AddTransient<IMessageRepository, MessageRepository>());
         }
     }

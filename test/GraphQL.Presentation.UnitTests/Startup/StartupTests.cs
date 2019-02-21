@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using GraphQL.Business.Commands.Logging;
 using GraphQL.Business.Commands.Messages;
 using GraphQL.Business.Repositories;
 using GraphQL.Data.Commands;
@@ -37,6 +38,18 @@ namespace GraphQL.Presentation.UnitTests.Startup
         public void ConfigureServices_DataIAutomapper_IsRegistered()
         {
             Get<IAutomapper>().ShouldBeOfType<Automapper>();
+        }
+
+        [Fact]
+        public void ConfigureServices_ILogger_IsRegistered()
+        {
+            Get<ILogger>().ShouldBeOfType<Logger>();
+        }
+
+        [Fact]
+        public void ConfigureServices_ILogRepository_IsRegistered()
+        {
+            Get<ILogRepository>().ShouldBeOfType<LogRepository>();
         }
 
         [Fact]
