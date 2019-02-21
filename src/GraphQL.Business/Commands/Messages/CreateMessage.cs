@@ -5,7 +5,7 @@ using GraphQL.Business.Repositories;
 
 namespace GraphQL.Business.Commands.Messages
 {
-    public class CreateMessage : Command<MessageInput, Message>, ICreateMessage
+    public class CreateMessage : ICreateMessage
     {
         private readonly IMessageRepository _repository;
 
@@ -14,7 +14,7 @@ namespace GraphQL.Business.Commands.Messages
             _repository = repository;
         }
 
-        public override IObservable<Message> Execute(MessageInput input)
+        public IObservable<Message> Execute(MessageInput input)
         {
             return _repository.Insert(input);
         }

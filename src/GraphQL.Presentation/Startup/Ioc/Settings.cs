@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Startup.Ioc
 {
-    internal class Settings : Command<IServiceCollection, IServiceCollection>, ISetup
+    internal class Settings : ISetup
     {
-        public override IObservable<IServiceCollection> Execute(IServiceCollection input)
+        public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input);
         }

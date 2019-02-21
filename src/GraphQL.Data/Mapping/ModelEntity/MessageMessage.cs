@@ -7,9 +7,9 @@ using MessageModel = GraphQL.Business.Models.Message;
 
 namespace GraphQL.Data.Mapping.ModelEntity
 {
-    internal class MessageMessage : Command<IProfileExpression, IProfileExpression>, IMapping
+    internal class MessageMessage : IMapping
     {
-        public override IObservable<IProfileExpression> Execute(IProfileExpression input)
+        public IObservable<IProfileExpression> Execute(IProfileExpression input)
         {
             return Observable.Return(input).Do(expression => expression.CreateMap<MessageModel, MessageEntity>());
         }

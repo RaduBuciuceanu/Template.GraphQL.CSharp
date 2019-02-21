@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Startup.Ioc
 {
-    internal class DataMemoryStorages : Command<IServiceCollection, IServiceCollection>, ISetup
+    internal class DataMemoryStorages : ISetup
     {
-        public override IObservable<IServiceCollection> Execute(IServiceCollection input)
+        public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
                 .Do(services => services.AddSingleton<IStorageFactory, MemoryStorageFactory>());

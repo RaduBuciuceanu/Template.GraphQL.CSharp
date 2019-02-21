@@ -12,9 +12,9 @@ using IMessageCreatedCommand = GraphQL.Business.Commands.Messages.IMessageCreate
 
 namespace GraphQL.Presentation.Startup.Ioc
 {
-    internal class Graph : Command<IServiceCollection, IServiceCollection>, ISetup
+    internal class Graph : ISetup
     {
-        public override IObservable<IServiceCollection> Execute(IServiceCollection input)
+        public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
                 .Do(RegisterMutations)

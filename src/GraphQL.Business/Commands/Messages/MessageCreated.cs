@@ -6,7 +6,7 @@ using GraphQL.Business.Models.Parameters;
 
 namespace GraphQL.Business.Commands.Messages
 {
-    public class MessageCreated : Command<MessageCreatedParameter, Message>, IMessageCreated
+    public class MessageCreated : IMessageCreated
     {
         private readonly ISubject<Message> _subject;
 
@@ -15,7 +15,7 @@ namespace GraphQL.Business.Commands.Messages
             _subject = new ReplaySubject<Message>(1);
         }
 
-        public override IObservable<Message> Execute(MessageCreatedParameter input)
+        public IObservable<Message> Execute(MessageCreatedParameter input)
         {
             return _subject.Where(message => FilterByAuthor(message, input.Author));
         }

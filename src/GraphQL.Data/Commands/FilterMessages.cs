@@ -7,7 +7,7 @@ using GraphQL.Data.Entities;
 
 namespace GraphQL.Data.Commands
 {
-    public class FilterMessages : Command<IQueryable<Message>, IQueryable<Message>>, IFilterMessages
+    public class FilterMessages : IFilterMessages
     {
         private GetMessagesParameter _parameter;
 
@@ -17,7 +17,7 @@ namespace GraphQL.Data.Commands
             return this;
         }
 
-        public override IObservable<IQueryable<Message>> Execute(IQueryable<Message> input)
+        public IObservable<IQueryable<Message>> Execute(IQueryable<Message> input)
         {
             return Observable.Return(input)
                 .Select(FilterById);

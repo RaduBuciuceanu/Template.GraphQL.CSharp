@@ -5,7 +5,7 @@ using GraphQL.Business.Repositories;
 
 namespace GraphQL.Business.Commands.Messages
 {
-    public class GetMessages : Command<GetMessagesParameter, Pagination<Message>>, IGetMessages
+    public class GetMessages : IGetMessages
     {
         private readonly IMessageRepository _messageRepository;
 
@@ -14,7 +14,7 @@ namespace GraphQL.Business.Commands.Messages
             _messageRepository = messageRepository;
         }
 
-        public override IObservable<Pagination<Message>> Execute(GetMessagesParameter input)
+        public IObservable<Pagination<Message>> Execute(GetMessagesParameter input)
         {
             return _messageRepository.GetMany(input);
         }

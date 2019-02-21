@@ -8,8 +8,7 @@ using GraphQL.Business.Models.Parameters;
 
 namespace GraphQL.Data.Commands
 {
-    public class CreatePagination<TItem> : Command<IQueryable<TItem>, Pagination<TItem>>,
-        ICreatePagination<TItem>
+    public class CreatePagination<TItem> : ICreatePagination<TItem>
     {
         private PaginationParameter _parameter;
 
@@ -19,7 +18,7 @@ namespace GraphQL.Data.Commands
             return this;
         }
 
-        public override IObservable<Pagination<TItem>> Execute(IQueryable<TItem> input)
+        public IObservable<Pagination<TItem>> Execute(IQueryable<TItem> input)
         {
             return Observable.Return(BuildPage(input));
         }

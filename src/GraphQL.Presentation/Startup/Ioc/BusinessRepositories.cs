@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Presentation.Startup.Ioc
 {
-    internal class BusinessRepositories : Command<IServiceCollection, IServiceCollection>, ISetup
+    internal class BusinessRepositories : ISetup
     {
-        public override IObservable<IServiceCollection> Execute(IServiceCollection input)
+        public IObservable<IServiceCollection> Execute(IServiceCollection input)
         {
             return Observable.Return(input)
                 .Do(services => services.AddTransient<IMessageRepository, MessageRepository>());
