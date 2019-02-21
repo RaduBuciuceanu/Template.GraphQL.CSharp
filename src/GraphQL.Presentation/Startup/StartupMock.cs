@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Linq;
 using GraphiQl;
+using GraphQL.Presentation.Middlewares;
 using GraphQL.Presentation.Startup.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ namespace GraphQL.Presentation.Startup
 
         public static void Configure(IApplicationBuilder builder)
         {
+            builder.UseMiddleware<Logging>();
             builder.UseMvc();
             builder.UseGraphiQl();
             builder.UseDeveloperExceptionPage();
