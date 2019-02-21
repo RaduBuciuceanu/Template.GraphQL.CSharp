@@ -13,7 +13,7 @@ namespace GraphQL.Presentation.Startup
             collection.AddMvc();
 
             new Settings().Execute(collection).Wait();
-            new MemoryStorages().Execute(collection).Wait();
+            new DataMemoryStorages().Execute(collection).Wait();
             new DataMapping().Execute(collection).Wait();
             new BusinessRepositories().Execute(collection).Wait();
             new BusinessCommands().Execute(collection).Wait();

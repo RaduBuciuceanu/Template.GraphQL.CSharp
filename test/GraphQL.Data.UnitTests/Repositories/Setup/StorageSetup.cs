@@ -9,6 +9,9 @@ namespace GraphQL.Data.UnitTests.Repositories.Setup
     {
         public StorageSetup(AutoMocker mocker) : base(mocker)
         {
+            Mocker.GetMock<IStorageFactory>()
+                .Setup(factory => factory.Make())
+                .Returns(Mocker.Get<IStorage>());
         }
 
         public StorageSetup WithInsert<TEntity>(TEntity inputOutput) where TEntity : Entity

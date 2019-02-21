@@ -22,10 +22,10 @@ namespace GraphQL.Data.Repositories
         private readonly IFilterMessages _filterMessages;
         private readonly ICreatePagination<MessageEntity> _createPagination;
 
-        public MessageRepository(IStorage storage, IMessageCreated messageCreated, IAutomapper mapper,
+        public MessageRepository(IStorageFactory storageFactory, IMessageCreated messageCreated, IAutomapper mapper,
             IFilterMessages filterMessages, ICreatePagination<MessageEntity> createPagination)
         {
-            _storage = storage;
+            _storage = storageFactory.Make();
             _messageCreated = messageCreated;
             _mapper = mapper;
             _filterMessages = filterMessages;

@@ -12,9 +12,9 @@ namespace GraphQL.Presentation.UnitTests.Startup
         protected override Action<IServiceCollection> Act => StartupMock.ConfigureServices;
 
         [Fact]
-        public void ConfigureServices_MemoryStorage_IsRegistered()
+        public void ConfigureServices_MemoryStorageFactory_IsRegistered()
         {
-            Get<IStorage>().ShouldBeOfType<MemoryStorage>();
+            Get<IStorageFactory>().ShouldBeOfType<MemoryStorageFactory>();
         }
     }
 }
