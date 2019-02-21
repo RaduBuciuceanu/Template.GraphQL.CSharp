@@ -7,7 +7,7 @@ namespace GraphQL.Presentation.GraphQL.Types.Parameters
     {
         public MessageCreatedParameter()
         {
-            Name = "messageCreatedParameter";
+            Name = "MessageCreatedParameter";
             Description = "Parameter passed to messageCreated graph node.";
 
             Field(model => model.Author).Description("The author of the message.");

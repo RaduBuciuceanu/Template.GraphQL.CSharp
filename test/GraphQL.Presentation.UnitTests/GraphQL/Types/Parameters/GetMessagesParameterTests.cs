@@ -17,7 +17,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Types.Parameters
         [Fact]
         public void Constructor_Name_IsSet()
         {
-            _instance.Name.ShouldBe("getMessagesParameter");
+            _instance.Name.ShouldBe("GetMessagesParameter");
         }
 
         [Fact]

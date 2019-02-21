@@ -7,7 +7,7 @@ namespace GraphQL.Presentation.GraphQL.Types.Inputs
     {
         public MessageInput()
         {
-            Name = "messageInput";
+            Name = "MessageInput";
             Description = "A message that contains an author and a content.";
 
             Field(instance => instance.Author).Description("The author of the message.");

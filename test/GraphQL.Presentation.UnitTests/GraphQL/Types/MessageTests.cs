@@ -17,7 +17,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Types
         [Fact]
         public void Constructor_Name_IsSet()
         {
-            _instance.Name.ShouldBe("message");
+            _instance.Name.ShouldBe("Message");
         }
 
         [Fact]

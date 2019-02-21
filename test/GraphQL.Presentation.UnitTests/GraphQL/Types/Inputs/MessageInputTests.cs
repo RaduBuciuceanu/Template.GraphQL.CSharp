@@ -17,7 +17,7 @@ namespace GraphQL.Presentation.UnitTests.GraphQL.Types.Inputs
         [Fact]
         public void Constructor_Name_IsSet()
         {
-            _instance.Name.ShouldBe("messageInput");
+            _instance.Name.ShouldBe("MessageInput");
         }
 
         [Fact]

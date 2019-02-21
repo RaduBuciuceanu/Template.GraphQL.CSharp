@@ -7,7 +7,7 @@ namespace GraphQL.Presentation.GraphQL.Types
     {
         public Message()
         {
-            Name = "message";
+            Name = "Message";
             Description = "A message that contains an author and a content.";
 
             Field(instance => instance.Author).Description("The author of the message.");
