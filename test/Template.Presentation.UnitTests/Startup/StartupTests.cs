@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GraphQL.Types;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using Template.Business.Commands.Logging;
 using Template.Business.Commands.Messages;
+using Template.Business.Commands.Status;
 using Template.Business.Repositories;
 using Template.Data.Commands;
+using Template.Data.Commands.Status;
 using Template.Data.Mapping;
 using Template.Data.Repositories;
+using Template.Presentation.Commands;
 using Template.Presentation.GraphQL.Main;
 using Template.Presentation.GraphQL.Nodes.Types;
 using Xunit;
@@ -29,7 +35,7 @@ namespace Template.Presentation.UnitTests.Startup
 
         protected StartupTests()
         {
-            var collection = new ServiceCollection();
+            IServiceCollection collection = BuildServiceCollection();
             Act(collection);
             _provider = collection.BuildServiceProvider();
         }
@@ -56,6 +62,24 @@ namespace Template.Presentation.UnitTests.Startup
         public void ConfigureServices_IMessageRepository_IsRegistered()
         {
             Get<IMessageRepository>().ShouldBeOfType<MessageRepository>();
+        }
+
+        [Fact]
+        public void Configure_IGetDataComponentHealth_IsRegistered()
+        {
+            Get<IEnumerable<IGetComponentHealth>>().ShouldContain(instance => instance is GetComponentHealth);
+        }
+
+        [Fact]
+        public void Configure_IGetApplicationVersion_IsRegistered()
+        {
+            Get<IGetApplicationVersion>().ShouldBeOfType<GetApplicationVersion>();
+        }
+
+        [Fact]
+        public void Configure_IGetApplicationHealth_IsRegistered()
+        {
+            Get<IGetApplicationHealth>().ShouldBeOfType<GetApplicationHealth>();
         }
 
         [Fact]
@@ -134,6 +158,13 @@ namespace Template.Presentation.UnitTests.Startup
         public void ConfigureServices_Schema_IsRegistered()
         {
             Get<Schema, GraphSchema>().ShouldNotBeNull();
+        }
+
+        private static IServiceCollection BuildServiceCollection()
+        {
+            var collection = new ServiceCollection();
+            collection.AddSingleton<IHostingEnvironment, HostingEnvironment>();
+            return collection;
         }
 
         protected TService Get<TService>()
