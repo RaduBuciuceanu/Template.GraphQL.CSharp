@@ -298,7 +298,7 @@
     <Rule Id="CA1802" Action="Error"/>
     <Rule Id="CA1804" Action="Error"/>
     <Rule Id="CA1809" Action="Error"/>
-    <Rule Id="CA1810" Action="Error"/>
+    <Rule Id="CA1810" Action="None"/>
     <Rule Id="CA1811" Action="Error"/>
     <Rule Id="CA1812" Action="Error"/>
     <Rule Id="CA1813" Action="Error"/>
@@ -321,6 +321,10 @@
     <Rule Id="CA2004" Action="Error"/>
 
     <!--Security rules-->
+
+    <!--Other rules-->
+    <Rule Id="CA2007" Action="Info"/>
+    <Rule Id="CA2227" Action="Info"/>
 
   </Rules>
 </RuleSet>
