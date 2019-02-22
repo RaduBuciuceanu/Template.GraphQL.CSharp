@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,8 +8,11 @@ namespace Template.Presentation
 {
     public static class Program
     {
+        public static DateTime StartedAt { get; private set; }
+
         public static void Main(string[] args)
         {
+            StartedAt = DateTime.UtcNow;
             CreateWebHostBuilder(args).Build().Run();
         }
 
