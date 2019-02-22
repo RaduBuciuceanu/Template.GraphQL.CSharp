@@ -3,7 +3,7 @@ using Template.Business;
 using Template.Business.Models;
 using Template.Business.Models.Parameters;
 
-namespace Template.Data.Commands
+namespace Template.Data.Commands.Pagination
 {
     public interface ICreatePagination<TEntity> : ICommand<IQueryable<TEntity>, Pagination<TEntity>>
     {

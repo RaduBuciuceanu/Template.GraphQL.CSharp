@@ -2,7 +2,8 @@
 using System.Reactive.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Business.Commands.Status;
-using Template.Data.Commands;
+using Template.Data.Commands.Messages;
+using Template.Data.Commands.Pagination;
 using Template.Data.Commands.Status;
 
 namespace Template.Presentation.Startup.Ioc

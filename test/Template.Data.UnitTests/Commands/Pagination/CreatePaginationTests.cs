@@ -4,10 +4,10 @@ using System.Reactive.Linq;
 using Shouldly;
 using Template.Business.Models;
 using Template.Business.Models.Parameters;
-using Template.Data.Commands;
+using Template.Data.Commands.Pagination;
 using Xunit;
 
-namespace Template.Data.UnitTests.Commands
+namespace Template.Data.UnitTests.Commands.Pagination
 {
     public class CreatePaginationTests
     {

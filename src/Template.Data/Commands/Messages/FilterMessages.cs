@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 using Template.Business.Models.Parameters;
 using Template.Data.Entities;
 
-namespace Template.Data.Commands
+namespace Template.Data.Commands.Messages
 {
     public class FilterMessages : IFilterMessages
     {

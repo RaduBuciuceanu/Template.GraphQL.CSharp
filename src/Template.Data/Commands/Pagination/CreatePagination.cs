@@ -5,7 +5,7 @@ using System.Reactive.Linq;
 using Template.Business.Models;
 using Template.Business.Models.Parameters;
 
-namespace Template.Data.Commands
+namespace Template.Data.Commands.Pagination
 {
     public class CreatePagination<TItem> : ICreatePagination<TItem>
     {

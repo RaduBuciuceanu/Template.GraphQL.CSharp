@@ -1,7 +1,9 @@
-﻿using GraphQL.Types;
+﻿using System.Diagnostics.CodeAnalysis;
+using GraphQL.Types;
 
 namespace Template.Presentation.GraphQL.Types
 {
+    [SuppressMessage("Microsoft.Performance", "CA1724", Justification = "It's more readable to name it in this way.")]
     public class Pagination<TGraphType> : ObjectGraphType<object> where TGraphType : IGraphType
     {
         public Pagination()

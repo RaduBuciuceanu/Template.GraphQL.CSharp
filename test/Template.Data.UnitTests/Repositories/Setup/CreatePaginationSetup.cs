@@ -3,7 +3,7 @@ using System.Reactive.Linq;
 using Moq.AutoMock;
 using Template.Business.Models;
 using Template.Business.Models.Parameters;
-using Template.Data.Commands;
+using Template.Data.Commands.Pagination;
 
 namespace Template.Data.UnitTests.Repositories.Setup
 {

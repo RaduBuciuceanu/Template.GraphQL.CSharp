@@ -3,11 +3,11 @@ using System.Linq;
 using System.Reactive.Linq;
 using Shouldly;
 using Template.Business.Models.Parameters;
-using Template.Data.Commands;
+using Template.Data.Commands.Messages;
 using Template.Data.Entities;
 using Xunit;
 
-namespace Template.Data.UnitTests.Commands
+namespace Template.Data.UnitTests.Commands.Messages
 {
     public class FilterMessagesTests
     {
