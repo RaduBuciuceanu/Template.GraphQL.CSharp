@@ -8,7 +8,7 @@
     <ItemGroup>
         <PackageReference Include="GraphiQL" Version="1.2.0" />
         <PackageReference Include="GraphQL" Version="2.4.0" />
-        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" AllowExplicitVersion="true" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     </ItemGroup>
 

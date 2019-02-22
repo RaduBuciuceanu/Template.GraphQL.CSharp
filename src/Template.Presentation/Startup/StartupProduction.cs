@@ -6,7 +6,7 @@ using Template.Presentation.Startup.Ioc;
 
 namespace Template.Presentation.Startup
 {
-    public class StartupProduction
+    public static class StartupProduction
     {
         public static void ConfigureServices(IServiceCollection collection)
         {

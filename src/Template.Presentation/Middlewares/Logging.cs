@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Template.Business.Commands.Logging;
 
 namespace Template.Presentation.Middlewares
 {
+    [SuppressMessage("Microsoft.Performance", "CA1724", Justification = "It's a middleware used for logging.")]
     public class Logging
     {
         private readonly RequestDelegate _next;
@@ -48,7 +50,7 @@ namespace Template.Presentation.Middlewares
                    $"Body: {GetBody(context)}";
         }
 
-        private string GetBody(HttpContext context)
+        private static string GetBody(HttpContext context)
         {
             context.Request.EnableRewind();
             context.Request.Body.Position = 0;

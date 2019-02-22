@@ -26,13 +26,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Template\Nodes\Mutations\Arguments\MessageInput.json">
+      <None Update="GraphQL\Nodes\Mutations\Arguments\MessageInput.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Template\Nodes\Queries\Arguments\GetMessagesParameter.json">
+      <None Update="GraphQL\Nodes\Queries\Arguments\GetMessagesParameter.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Template\Nodes\Subscriptions\Arguments\MessageCreatedParameter.json">
+      <None Update="GraphQL\Nodes\Subscriptions\Arguments\MessageCreatedParameter.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

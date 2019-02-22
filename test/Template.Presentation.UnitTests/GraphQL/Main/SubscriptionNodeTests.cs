@@ -98,7 +98,7 @@ namespace Template.Presentation.UnitTests.GraphQL.Main
             return mock;
         }
 
-        private void SetupHasArgument(Mock<ISubscription> mock)
+        private static void SetupHasArgument(Mock<ISubscription> mock)
         {
             var hasArgument = mock.As<IHasArgument>();
             hasArgument.Setup(mutation => mutation.ArgumentType).Returns(typeof(InputObjectGraphType));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reactive.Threading.Tasks;
 using GraphQL.Types;
 using Template.Business.Commands.Messages;
@@ -37,6 +38,7 @@ namespace Template.Presentation.GraphQL.Nodes.Queries
             return _getMessages.Execute(parameter).ToTask();
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1812", Justification = "Because of GraphQL documentation.")]
         private class MessagePagination : Pagination<Message>
         {
         }
