@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../Template.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GraphiQL" Version="1.2.0" />
+        <PackageReference Include="GraphQL" Version="2.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.ruleset" />
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Template.Business\Template.Business.csproj" />
+      <ProjectReference Include="..\Template.Data\Template.Data.csproj" />
+    </ItemGroup>
+
+</Project>
+

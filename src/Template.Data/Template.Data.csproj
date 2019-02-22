@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../Template.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Template.Business\Template.Business.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.ruleset" />
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="8.0.0" />
+    </ItemGroup>
+
+</Project>
+

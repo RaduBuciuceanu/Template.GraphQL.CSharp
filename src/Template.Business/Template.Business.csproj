@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <CodeAnalysisRuleSet>../Template.Sources.CodeStyle/stylecop.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Reactive" Version="4.1.2" />
+        <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
+        <PackageReference Include="System.Reactive.Linq" Version="4.1.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Template.Sources.CodeStyle\Template.Sources.CodeStyle.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.ruleset" />
+        <AdditionalFiles Include="../Template.Sources.CodeStyle/stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands\Messages" />
+    </ItemGroup>
+
+</Project>
+
