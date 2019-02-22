@@ -77,6 +77,12 @@ namespace Template.Presentation.UnitTests.Startup
         }
 
         [Fact]
+        public void ConfigureServices_IStatusRepository_IsRegistered()
+        {
+            Get<IStatusRepository>().ShouldBeOfType<StatusRepository>();
+        }
+
+        [Fact]
         public void ConfigureServices_IFilterMessages_IsRegistered()
         {
             Get<IFilterMessages>().ShouldBeOfType<FilterMessages>();
